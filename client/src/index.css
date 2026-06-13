@@ -15,7 +15,7 @@
   }
   /* Offset anchored sections so they clear the sticky header. */
   [id] {
-    scroll-margin-top: 92px;
+    scroll-margin-top: 128px;
   }
   ::selection {
     @apply bg-forest-200 text-forest-900;

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Icon from "./Icon";
+import Search from "./Search";
 import { navLinks } from "../data/site";
 
 const basePath = (s) => s.split("#")[0];
@@ -39,7 +40,7 @@ export default function Navbar() {
   };
 
   const topClass = (active) =>
-    `flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2.5 font-head text-[0.86rem] font-semibold transition-colors ${
+    `flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2.5 font-head text-[0.88rem] font-semibold transition-colors ${
       active ? "bg-forest-700 text-white" : "text-forest-800 hover:bg-lime-100 hover:text-forest-700"
     }`;
 
@@ -57,17 +58,42 @@ export default function Navbar() {
         scrolled ? "shadow-sm" : ""
       }`}
     >
-      <nav className="container-cc flex h-[76px] items-center justify-between gap-4">
-        <Link to="/" className="flex flex-none items-center" aria-label="CarbonCanopy Solutions home">
-          <img
-            src="/img/logo.png"
-            alt="CarbonCanopy Solutions"
-            className="h-12 w-auto sm:h-14"
-          />
+      {/* Top row: centered logo, search at right, mobile toggle at left */}
+      <div className="container-cc relative flex h-[72px] items-center justify-center">
+        <button
+          className="absolute left-0 grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span className="sr-only">Menu</span>
+          <div className="space-y-1.5">
+            <span
+              className={`block h-0.5 w-6 bg-forest-800 transition-transform ${
+                open ? "translate-y-2 rotate-45" : ""
+              }`}
+            />
+            <span className={`block h-0.5 w-6 bg-forest-800 transition-opacity ${open ? "opacity-0" : ""}`} />
+            <span
+              className={`block h-0.5 w-6 bg-forest-800 transition-transform ${
+                open ? "-translate-y-2 -rotate-45" : ""
+              }`}
+            />
+          </div>
+        </button>
+
+        <Link to="/" className="flex items-center" aria-label="CarbonCanopy Solutions home">
+          <img src="/img/logo.png" alt="CarbonCanopy Solutions" className="h-12 w-auto sm:h-14" />
         </Link>
 
-        {/* Desktop links */}
-        <ul className="hidden flex-nowrap items-center gap-0.5 lg:flex" ref={dropRef}>
+        <div className="absolute right-0">
+          <Search />
+        </div>
+      </div>
+
+      {/* Desktop nav row: centered links */}
+      <nav className="hidden border-t border-line lg:block">
+        <ul className="container-cc flex flex-nowrap items-center justify-center gap-0.5 py-1.5" ref={dropRef}>
           {navLinks.map((l) =>
             l.children ? (
               <li
@@ -91,7 +117,7 @@ export default function Navbar() {
                   />
                 </button>
                 {menu === l.label && (
-                  <ul className="absolute left-0 top-full z-50 w-64 overflow-hidden rounded-xl border border-line bg-white p-1.5 shadow-lg">
+                  <ul className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 overflow-hidden rounded-xl border border-line bg-white p-1.5 shadow-lg">
                     {l.children.map((c) => (
                       <li key={c.to}>
                         <Link to={c.to} onClick={closeAll} className={childClass(false)}>
@@ -111,37 +137,14 @@ export default function Navbar() {
             )
           )}
         </ul>
-
-        {/* Mobile toggle */}
-        <button
-          className="grid h-11 w-11 flex-none place-items-center rounded-[10px] lg:hidden"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-        >
-          <span className="sr-only">Menu</span>
-          <div className="space-y-1.5">
-            <span
-              className={`block h-0.5 w-6 bg-forest-800 transition-transform ${
-                open ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span className={`block h-0.5 w-6 bg-forest-800 transition-opacity ${open ? "opacity-0" : ""}`} />
-            <span
-              className={`block h-0.5 w-6 bg-forest-800 transition-transform ${
-                open ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
-          </div>
-        </button>
       </nav>
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-x-0 top-[76px] z-[99] origin-top overflow-y-auto border-b border-line bg-white px-6 pb-6 shadow-md transition-transform lg:hidden ${
+        className={`fixed inset-x-0 top-[72px] z-[99] origin-top overflow-y-auto border-b border-line bg-white px-6 pb-6 shadow-md transition-transform lg:hidden ${
           open ? "translate-y-0" : "-translate-y-[130%]"
         }`}
-        style={{ maxHeight: "calc(100vh - 76px)" }}
+        style={{ maxHeight: "calc(100vh - 72px)" }}
       >
         <ul className="space-y-1 pt-3">
           {navLinks.map((l) =>

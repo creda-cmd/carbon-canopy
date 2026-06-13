@@ -811,3 +811,46 @@ export const navLinks = [
   },
   { to: "/contact", label: "Contact" },
 ];
+
+// Flat, searchable index of pages, sections, and key content.
+export const searchIndex = [
+  { label: "Home", to: "/", kind: "Page" },
+  { label: "About Us", to: "/about", kind: "Page" },
+  { label: "Our Services", to: "/services", kind: "Page" },
+  { label: "Carbon Projects", to: "/carbon-projects", kind: "Page" },
+  { label: "Forestry & Landscaping", to: "/forestry-landscaping", kind: "Page" },
+  { label: "Agroforestry", to: "/agroforestry", kind: "Page" },
+  { label: "Projects Portfolio", to: "/portfolio", kind: "Page" },
+  { label: "Contact", to: "/contact", kind: "Page" },
+  ...serviceCategories.map((c) => ({ label: c.title, to: `/${c.slug}`, kind: "Service Area" })),
+  ...carbonGroups.map((g) => ({ label: g.title, to: "/carbon-projects#services", kind: "Carbon Service" })),
+  ...carbonStandards.map((s) => ({ label: s, to: "/carbon-projects#standards", kind: "Carbon Standard" })),
+  ...forestryGroups.map((g) => ({ label: g.title, to: "/forestry-landscaping#services", kind: "Forestry Service" })),
+  ...agroforestryGroups.map((g) => ({ label: g.title, to: "/agroforestry#services", kind: "Agroforestry Service" })),
+  ...portfolioGroups.map((g) => ({ label: g.title, to: "/portfolio#services", kind: "Portfolio Service" })),
+  ...fruitSpecies.map((s) => ({ label: s, to: "/agroforestry#species", kind: "Fruit Species" })),
+  ...agroforestrySpecies.map((s) => ({ label: s, to: "/agroforestry#species", kind: "Agroforestry Species" })),
+  ...portfolioSectors.map((s) => ({ label: s, to: "/portfolio#sectors", kind: "Sector" })),
+  ...values.map((v) => ({ label: v.title, to: "/about", kind: "Core Value" })),
+];
+
+export function searchSite(query, limit = 8) {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  const seen = new Set();
+  const starts = [];
+  const contains = [];
+  for (const item of searchIndex) {
+    const label = item.label.toLowerCase();
+    const key = `${item.label}|${item.to}`;
+    if (seen.has(key)) continue;
+    if (label.startsWith(q)) {
+      starts.push(item);
+      seen.add(key);
+    } else if (label.includes(q)) {
+      contains.push(item);
+      seen.add(key);
+    }
+  }
+  return [...starts, ...contains].slice(0, limit);
+}
