@@ -87,17 +87,21 @@
 }
 
 @layer utilities {
+  /* Bright, fresh green header bar. */
+  .header-gradient {
+    background: linear-gradient(120deg, #ebfacb 0%, #d4f2bb 45%, #bdf0db 100%);
+  }
   .hero-gradient {
-    background: radial-gradient(800px 400px at 85% 10%, rgba(67, 185, 106, 0.25), transparent 60%),
-      radial-gradient(600px 400px at 10% 90%, rgba(143, 208, 164, 0.18), transparent 60%),
-      linear-gradient(160deg, #103b29 0%, #0c2a1d 100%);
+    background: radial-gradient(820px 420px at 85% 8%, rgba(124, 222, 130, 0.38), transparent 60%),
+      radial-gradient(640px 420px at 8% 92%, rgba(159, 226, 92, 0.22), transparent 60%),
+      linear-gradient(160deg, #14532d 0%, #0e3a26 100%);
   }
   .forest-gradient {
-    background: radial-gradient(1200px 500px at 80% -10%, rgba(67, 185, 106, 0.18), transparent 60%),
-      linear-gradient(160deg, #103b29, #0c2a1d);
+    background: radial-gradient(1200px 520px at 80% -10%, rgba(124, 222, 130, 0.3), transparent 60%),
+      linear-gradient(160deg, #155e34, #0e3a26);
   }
   .cta-gradient {
-    background: radial-gradient(800px 300px at 80% 0%, rgba(67, 185, 106, 0.25), transparent 60%),
-      linear-gradient(150deg, #14532d, #0c2a1d);
+    background: radial-gradient(820px 320px at 80% 0%, rgba(124, 222, 130, 0.34), transparent 60%),
+      linear-gradient(150deg, #1a6b3a, #0e3a26);
   }
 }

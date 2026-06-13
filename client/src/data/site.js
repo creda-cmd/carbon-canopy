@@ -125,6 +125,94 @@ export const serviceCategories = [
   },
 ];
 
+// The four headline service categories shown on the Our Services page.
+export const servicesByCategory = [
+  {
+    id: "carbon",
+    slug: "carbon-projects",
+    icon: "carbon",
+    title: "Carbon Project Development Services",
+    blurb:
+      "Full-cycle carbon project development — feasibility, baselines, PDD, MRV, validation, registration, and finance advisory.",
+    items: [
+      "Carbon Project Feasibility Assessments",
+      "Baseline Assessments",
+      "Project Design Document (PDD) Development",
+      "Carbon Due Diligence",
+      "Carbon Evidence Documentation",
+      "Monitoring, Reporting and Verification (MRV)",
+      "Stakeholder Engagement and FPIC Processes",
+      "Carbon Project Validation & Verification Support",
+      "Carbon Registration Support (Verra, Gold Standard, etc.)",
+      "Carbon Monitoring Plans",
+      "GIS Mapping and Carbon Plot Mapping",
+      "Farmer Registration and Data Management",
+      "Carbon Compliance Audits",
+      "Sustainable Land Management Planning",
+      "Agroforestry Carbon Project Design",
+      "Afforestation, Reforestation and Revegetation (ARR) Support",
+      "Carbon Risk Assessments",
+      "Climate Change Mitigation Consulting",
+      "Carbon Finance Advisory",
+      "Sustainable Development Goal (SDG) Alignment",
+    ],
+  },
+  {
+    id: "forestry",
+    slug: "forestry-landscaping",
+    icon: "tree",
+    title: "Forestry & Environmental Services",
+    blurb:
+      "Indigenous propagation, nurseries, reforestation, landscaping, and ecosystem restoration that bring landscapes back to life.",
+    items: [
+      "Indigenous Tree Species Propagation",
+      "Tree Nursery Establishment & Management",
+      "Landscaping Services",
+      "Agroforestry System Design",
+      "Reforestation & Restoration Programs",
+      "Seedling Production and Distribution",
+      "Forest Restoration Consulting",
+      "Community Forestry Support",
+      "Biodiversity Conservation Services",
+      "Soil & Water Conservation Planning",
+      "Ecosystem Restoration Services",
+    ],
+  },
+  {
+    id: "agricultural",
+    slug: "agroforestry",
+    icon: "leaf",
+    title: "Agricultural & Agroforestry Services",
+    blurb:
+      "Climate-smart agriculture and agroforestry support — from orchards and fruit trees to farmer training and extension.",
+    items: [
+      "Fruit Tree Farming Support",
+      "Orchard Establishment",
+      "Sustainable Agriculture Advisory",
+      "Farmer Capacity Building & Training",
+      "Climate-Smart Agriculture Services",
+      "Cashew Farming Support",
+      "Moringa Farming Support",
+      "Agroforestry Extension Services",
+    ],
+  },
+  {
+    id: "market",
+    slug: "portfolio",
+    icon: "coins",
+    title: "Market Linkage & Business Services",
+    blurb:
+      "Connecting buyers and sellers, coordinating supply chains, and advising on carbon markets, investment, and project management.",
+    items: [
+      "Connecting Buyers and Sellers of Indigenous Tree Species",
+      "Seedling Supply Chain Coordination",
+      "Carbon Market Advisory",
+      "Green Investment Support",
+      "Environmental Project Management",
+    ],
+  },
+];
+
 // Detailed carbon project groups (A–O)
 export const carbonGroups = [
   {
@@ -766,9 +854,10 @@ export const navLinks = [
     to: "/services",
     label: "Our Services",
     children: [
-      { to: "/services", label: "Services Overview", icon: "layers", desc: "All four service areas at a glance" },
-      { to: "/services#categories", label: "Service Areas", icon: "folder", desc: "Carbon, forestry, agroforestry & portfolio" },
-      { to: "/services#approach", label: "Our Approach", icon: "check", desc: "Assess → Verify → Scale" },
+      { to: "/services#carbon", label: "Carbon Project Development", icon: "carbon", desc: "Feasibility, PDD, MRV & registration" },
+      { to: "/services#forestry", label: "Forestry & Environmental", icon: "tree", desc: "Propagation, nurseries & restoration" },
+      { to: "/services#agricultural", label: "Agricultural & Agroforestry", icon: "leaf", desc: "Orchards, IPM & farmer training" },
+      { to: "/services#market", label: "Market Linkage & Business", icon: "coins", desc: "Buyer–seller linkage & advisory" },
     ],
   },
   {
@@ -822,7 +911,8 @@ export const searchIndex = [
   { label: "Agroforestry", to: "/agroforestry", kind: "Page" },
   { label: "Projects Portfolio", to: "/portfolio", kind: "Page" },
   { label: "Contact", to: "/contact", kind: "Page" },
-  ...serviceCategories.map((c) => ({ label: c.title, to: `/${c.slug}`, kind: "Service Area" })),
+  ...servicesByCategory.map((c) => ({ label: c.title, to: `/services#${c.id}`, kind: "Service Category" })),
+  ...servicesByCategory.flatMap((c) => c.items.map((s) => ({ label: s, to: `/services#${c.id}`, kind: "Service" }))),
   ...carbonGroups.map((g) => ({ label: g.title, to: "/carbon-projects#services", kind: "Carbon Service" })),
   ...carbonStandards.map((s) => ({ label: s, to: "/carbon-projects#standards", kind: "Carbon Standard" })),
   ...forestryGroups.map((g) => ({ label: g.title, to: "/forestry-landscaping#services", kind: "Forestry Service" })),

@@ -81,8 +81,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-[100] border-b border-line bg-white/90 backdrop-blur-md transition-shadow ${
-        scrolled ? "shadow-sm" : ""
+      className={`header-gradient sticky top-0 z-[100] border-b border-lime-300/70 backdrop-blur-md transition-shadow ${
+        scrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
       {/* Top row: centered logo, search at right, mobile toggle at left */}
@@ -119,7 +119,7 @@ export default function Navbar() {
       </div>
 
       {/* Desktop nav row: centered links */}
-      <nav className="hidden border-t border-line lg:block">
+      <nav className="hidden border-t border-white/40 lg:block">
         <ul className="container-cc flex flex-nowrap items-center justify-center gap-0.5 py-1.5" ref={dropRef}>
           {navLinks.map((l) =>
             l.children ? (
