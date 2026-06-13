@@ -87,9 +87,9 @@
 }
 
 @layer utilities {
-  /* Bright, fresh green header bar. */
+  /* Two-tone green header bar (lime green -> emerald green). */
   .header-gradient {
-    background: linear-gradient(120deg, #ebfacb 0%, #d4f2bb 45%, #bdf0db 100%);
+    background: linear-gradient(120deg, #b9e94c 0%, #2f9e6b 100%);
   }
   .hero-gradient {
     background: radial-gradient(820px 420px at 85% 8%, rgba(124, 222, 130, 0.38), transparent 60%),
