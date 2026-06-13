@@ -39,15 +39,42 @@ export default function Navbar() {
     setOpen(false);
   };
 
-  const topClass = (active) =>
-    `flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2.5 font-head text-[0.88rem] font-semibold transition-colors ${
-      active ? "bg-forest-700 text-white" : "text-forest-800 hover:bg-lime-100 hover:text-forest-700"
-    }`;
+  const topBase =
+    "group relative flex items-center gap-1.5 whitespace-nowrap px-3.5 py-3 font-head text-[0.9rem] font-semibold tracking-wide transition-colors";
+  const topText = (active) => (active ? "text-forest-700" : "text-forest-800 hover:text-forest-700");
 
-  const childClass = (active) =>
-    `block rounded-lg px-3.5 py-2.5 font-head text-[0.88rem] font-medium transition-colors ${
-      active ? "bg-forest-50 text-forest-700" : "text-forest-800 hover:bg-lime-100 hover:text-forest-700"
-    }`;
+  const Underline = ({ active }) => (
+    <span
+      className={`pointer-events-none absolute inset-x-3 bottom-1 h-[2px] origin-left rounded-full bg-gradient-to-r from-forest-600 to-lime-500 transition-transform duration-300 ${
+        active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+      }`}
+    />
+  );
+
+  // Rich dropdown item with leading icon, label, description, and trailing chevron.
+  const MenuItem = ({ item, onClick }) => (
+    <Link
+      to={item.to}
+      onClick={onClick}
+      className="group/it flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-mist"
+    >
+      <span className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-forest-50 text-forest-600 transition-colors group-hover/it:bg-lime-100 group-hover/it:text-forest-700">
+        <Icon name={item.icon || "leaf"} className="h-5 w-5" />
+      </span>
+      <span className="min-w-0">
+        <span className="block font-head text-[0.92rem] font-semibold leading-tight text-forest-800">
+          {item.label}
+        </span>
+        {item.desc && (
+          <span className="mt-0.5 block font-body text-[0.78rem] leading-snug text-muted">{item.desc}</span>
+        )}
+      </span>
+      <Icon
+        name="arrow"
+        className="ml-auto mt-1.5 h-3.5 w-3.5 flex-none -translate-x-1 text-transparent transition-all group-hover/it:translate-x-0 group-hover/it:text-forest-500"
+      />
+    </Link>
+  );
 
   const isGroupActive = (l) =>
     pathname === basePath(l.to) || l.children?.some((c) => pathname === basePath(c.to));
@@ -105,33 +132,42 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => setMenu((m) => (m === l.label ? null : l.label))}
-                  className={topClass(isGroupActive(l))}
+                  className={`${topBase} ${topText(isGroupActive(l))}`}
                   aria-expanded={menu === l.label}
                 >
                   {l.label}
                   <Icon
                     name="arrow"
-                    className={`h-3 w-3 rotate-90 transition-transform ${
+                    className={`h-3 w-3 rotate-90 text-forest-500 transition-transform ${
                       menu === l.label ? "-rotate-90" : ""
                     }`}
                   />
+                  <Underline active={isGroupActive(l) || menu === l.label} />
                 </button>
                 {menu === l.label && (
-                  <ul className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 overflow-hidden rounded-xl border border-line bg-white p-1.5 shadow-lg">
-                    {l.children.map((c) => (
-                      <li key={c.to}>
-                        <Link to={c.to} onClick={closeAll} className={childClass(false)}>
-                          {c.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="absolute left-1/2 top-[calc(100%-2px)] z-50 w-[336px] -translate-x-1/2 pt-3">
+                    <div className="relative overflow-hidden rounded-2xl border border-line bg-white shadow-xl animate-dropIn">
+                      <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-forest-600 to-lime-500" />
+                      <ul className="relative p-2 pt-3">
+                        {l.children.map((c) => (
+                          <li key={c.to}>
+                            <MenuItem item={c} onClick={closeAll} />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 )}
               </li>
             ) : (
               <li key={l.to}>
-                <NavLink to={l.to} end={l.to === "/"} className={({ isActive }) => topClass(isActive)}>
-                  {l.label}
+                <NavLink to={l.to} end={l.to === "/"} className={({ isActive }) => `${topBase} ${topText(isActive)}`}>
+                  {({ isActive }) => (
+                    <>
+                      {l.label}
+                      <Underline active={isActive} />
+                    </>
+                  )}
                 </NavLink>
               </li>
             )
@@ -153,23 +189,21 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => setMenu((m) => (m === l.label ? null : l.label))}
-                  className="flex w-full items-center justify-between rounded-full px-3.5 py-2.5 font-head text-[0.92rem] font-semibold text-forest-800 hover:bg-lime-100"
+                  className="flex w-full items-center justify-between rounded-xl px-3.5 py-3 font-head text-[0.95rem] font-semibold text-forest-800 hover:bg-mist"
                 >
                   {l.label}
                   <Icon
                     name="arrow"
-                    className={`h-4 w-4 rotate-90 transition-transform ${
+                    className={`h-4 w-4 rotate-90 text-forest-500 transition-transform ${
                       menu === l.label ? "-rotate-90" : ""
                     }`}
                   />
                 </button>
                 {menu === l.label && (
-                  <ul className="ml-3 space-y-1 border-l border-line pl-3 pt-1">
+                  <ul className="mb-1 ml-2 space-y-0.5 border-l-2 border-lime-200 pl-2 pt-0.5">
                     {l.children.map((c) => (
                       <li key={c.to}>
-                        <Link to={c.to} className={childClass(false)} onClick={closeAll}>
-                          {c.label}
-                        </Link>
+                        <MenuItem item={c} onClick={closeAll} />
                       </li>
                     ))}
                   </ul>
@@ -180,7 +214,11 @@ export default function Navbar() {
                 <NavLink
                   to={l.to}
                   end={l.to === "/"}
-                  className={({ isActive }) => topClass(isActive)}
+                  className={({ isActive }) =>
+                    `block rounded-xl px-3.5 py-3 font-head text-[0.95rem] font-semibold transition-colors ${
+                      isActive ? "bg-forest-700 text-white" : "text-forest-800 hover:bg-mist"
+                    }`
+                  }
                   onClick={closeAll}
                 >
                   {l.label}

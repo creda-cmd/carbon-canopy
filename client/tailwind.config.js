@@ -63,10 +63,15 @@ export default {
           "0%": { opacity: "0", transform: "translateY(24px)" },
           "100%": { opacity: "1", transform: "none" },
         },
+        dropIn: {
+          "0%": { opacity: "0", transform: "translateY(-8px) scale(0.98)" },
+          "100%": { opacity: "1", transform: "none" },
+        },
       },
       animation: {
         floaty: "floaty 6s ease-in-out infinite",
         fadeUp: "fadeUp 0.7s ease forwards",
+        dropIn: "dropIn 0.18s ease-out",
       },
     },
   },
