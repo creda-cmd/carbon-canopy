@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import Logo from "./Logo";
 import Icon from "./Icon";
 import { navLinks } from "../data/site";
 
@@ -59,14 +58,12 @@ export default function Navbar() {
       }`}
     >
       <nav className="container-cc flex h-[76px] items-center justify-between gap-4">
-        <Link to="/" className="flex flex-none items-center gap-3">
-          <Logo className="h-11 w-11 flex-none" />
-          <span className="font-head text-[1.1rem] font-bold leading-none text-forest-800">
-            CarbonCanopy
-            <small className="mt-1 block font-body text-[0.6rem] font-medium uppercase tracking-[0.14em] text-lime-600">
-              Solutions
-            </small>
-          </span>
+        <Link to="/" className="flex flex-none items-center" aria-label="CarbonCanopy Solutions home">
+          <img
+            src="/img/logo.png"
+            alt="CarbonCanopy Solutions"
+            className="h-12 w-auto sm:h-14"
+          />
         </Link>
 
         {/* Desktop links */}

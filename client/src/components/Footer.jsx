@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Logo from "./Logo";
 import Icon from "./Icon";
 import { company, navLinks } from "../data/site";
 
@@ -9,9 +8,10 @@ export default function Footer() {
     <footer className="forest-gradient pt-16 text-forest-100">
       <div className="container-cc grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
-          <div className="mb-4 flex items-center gap-3">
-            <Logo className="h-11 w-11" />
-            <strong className="font-head text-[1.15rem] text-white">CarbonCanopy Solutions</strong>
+          <div className="mb-4">
+            <span className="inline-flex rounded-xl bg-white px-3 py-2 shadow-sm">
+              <img src="/img/logo.png" alt="CarbonCanopy Solutions" className="h-12 w-auto" />
+            </span>
           </div>
           <p className="text-sm text-forest-100/90">
             Carbon project development, forestry, agroforestry, and climate-smart consulting that restore
