@@ -762,10 +762,16 @@ export const showcase = [
 export const navLinks = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
-  { to: "/services", label: "Our Services" },
-  { to: "/carbon-projects", label: "Carbon Projects" },
-  { to: "/forestry-landscaping", label: "Forestry & Landscaping" },
-  { to: "/agroforestry", label: "Agroforestry" },
-  { to: "/portfolio", label: "Portfolio" },
+  {
+    to: "/services",
+    label: "Our Services",
+    children: [
+      { to: "/services", label: "All Services" },
+      { to: "/carbon-projects", label: "Carbon Projects" },
+      { to: "/forestry-landscaping", label: "Forestry & Landscaping" },
+      { to: "/agroforestry", label: "Agroforestry" },
+      { to: "/portfolio", label: "Projects Portfolio" },
+    ],
+  },
   { to: "/contact", label: "Contact" },
 ];

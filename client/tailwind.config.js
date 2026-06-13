@@ -21,6 +21,16 @@ export default {
           200: "#c3e7cf",
           300: "#8fd0a4",
         },
+        lime: {
+          50: "#f3fbe6",
+          100: "#e4f6c3",
+          200: "#cdef90",
+          300: "#b2e35a",
+          400: "#9bd62f",
+          500: "#7fbf1f",
+          600: "#639a17",
+          700: "#4c7615",
+        },
         gold: "#d9b14a",
         mist: "#f4faf6",
         ink: "#16241c",
@@ -28,8 +38,8 @@ export default {
         line: "#dbe9e0",
       },
       fontFamily: {
-        head: ['"Poppins"', "Segoe UI", "system-ui", "sans-serif"],
-        body: ['"Inter"', "Segoe UI", "system-ui", "sans-serif"],
+        head: ['"Times New Roman"', "Times", "Georgia", "serif"],
+        body: ['"Times New Roman"', "Times", "Georgia", "serif"],
       },
       boxShadow: {
         sm: "0 2px 8px rgba(16,59,41,0.06)",

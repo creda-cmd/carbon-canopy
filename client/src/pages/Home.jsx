@@ -30,7 +30,7 @@ export default function Home() {
               Nature-Based Solutions for a Sustainable Future
             </span>
             <h1 className="text-4xl font-extrabold text-white sm:text-5xl lg:text-[3.4rem]">
-              Growing <span className="text-sage-300">Climate Solutions</span> Naturally
+              Growing <span className="text-lime-300">Climate Solutions</span> Naturally
             </h1>
             <p className="mt-5 max-w-xl text-lg text-forest-100">
               CarbonCanopy Solutions develops high-integrity carbon projects, restores forests and
