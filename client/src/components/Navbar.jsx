@@ -4,10 +4,12 @@ import Logo from "./Logo";
 import Icon from "./Icon";
 import { navLinks } from "../data/site";
 
+const basePath = (s) => s.split("#")[0];
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [menu, setMenu] = useState(null); // open dropdown label (desktop) / mobile
+  const [menu, setMenu] = useState(null); // open dropdown label
   const { pathname } = useLocation();
   const dropRef = useRef(null);
 
@@ -32,14 +34,23 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
-  const linkClass = ({ isActive }) =>
-    `block rounded-full px-3.5 py-2.5 font-head text-[0.92rem] font-medium transition-colors ${
-      isActive
-        ? "bg-forest-700 text-white"
-        : "text-forest-800 hover:bg-lime-100 hover:text-forest-700"
+  const closeAll = () => {
+    setMenu(null);
+    setOpen(false);
+  };
+
+  const topClass = (active) =>
+    `flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2.5 font-head text-[0.86rem] font-semibold transition-colors ${
+      active ? "bg-forest-700 text-white" : "text-forest-800 hover:bg-lime-100 hover:text-forest-700"
     }`;
 
-  const isGroupActive = (l) => l.children?.some((c) => pathname === c.to) || pathname === l.to;
+  const childClass = (active) =>
+    `block rounded-lg px-3.5 py-2.5 font-head text-[0.88rem] font-medium transition-colors ${
+      active ? "bg-forest-50 text-forest-700" : "text-forest-800 hover:bg-lime-100 hover:text-forest-700"
+    }`;
+
+  const isGroupActive = (l) =>
+    pathname === basePath(l.to) || l.children?.some((c) => pathname === basePath(c.to));
 
   return (
     <header
@@ -47,58 +58,48 @@ export default function Navbar() {
         scrolled ? "shadow-sm" : ""
       }`}
     >
-      <nav className="container-cc flex h-[76px] items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
+      <nav className="container-cc flex h-[76px] items-center justify-between gap-4">
+        <Link to="/" className="flex flex-none items-center gap-3">
           <Logo className="h-11 w-11 flex-none" />
-          <span className="font-head text-[1.15rem] font-bold leading-none text-forest-800">
+          <span className="font-head text-[1.1rem] font-bold leading-none text-forest-800">
             CarbonCanopy
-            <small className="mt-1 block font-body text-[0.62rem] font-medium uppercase tracking-[0.14em] text-lime-600">
+            <small className="mt-1 block font-body text-[0.6rem] font-medium uppercase tracking-[0.14em] text-lime-600">
               Solutions
             </small>
           </span>
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden items-center gap-1 lg:flex" ref={dropRef}>
+        <ul className="hidden flex-nowrap items-center gap-0.5 lg:flex" ref={dropRef}>
           {navLinks.map((l) =>
             l.children ? (
-              <li key={l.label} className="relative">
+              <li
+                key={l.label}
+                className="relative"
+                onMouseEnter={() => setMenu(l.label)}
+                onMouseLeave={() => setMenu((m) => (m === l.label ? null : m))}
+              >
                 <button
                   type="button"
                   onClick={() => setMenu((m) => (m === l.label ? null : l.label))}
-                  className={`flex items-center gap-1.5 rounded-full px-3.5 py-2.5 font-head text-[0.92rem] font-medium transition-colors ${
-                    isGroupActive(l)
-                      ? "bg-forest-700 text-white"
-                      : "text-forest-800 hover:bg-lime-100 hover:text-forest-700"
-                  }`}
+                  className={topClass(isGroupActive(l))}
                   aria-expanded={menu === l.label}
                 >
                   {l.label}
                   <Icon
                     name="arrow"
-                    className={`h-3.5 w-3.5 rotate-90 transition-transform ${
+                    className={`h-3 w-3 rotate-90 transition-transform ${
                       menu === l.label ? "-rotate-90" : ""
                     }`}
                   />
                 </button>
                 {menu === l.label && (
-                  <ul className="absolute left-0 top-[calc(100%+8px)] z-50 w-60 overflow-hidden rounded-xl border border-line bg-white p-1.5 shadow-lg">
+                  <ul className="absolute left-0 top-full z-50 w-64 overflow-hidden rounded-xl border border-line bg-white p-1.5 shadow-lg">
                     {l.children.map((c) => (
                       <li key={c.to}>
-                        <NavLink
-                          to={c.to}
-                          end
-                          onClick={() => setMenu(null)}
-                          className={({ isActive }) =>
-                            `block rounded-lg px-3.5 py-2.5 font-head text-[0.9rem] font-medium transition-colors ${
-                              isActive
-                                ? "bg-forest-50 text-forest-700"
-                                : "text-forest-800 hover:bg-lime-100 hover:text-forest-700"
-                            }`
-                          }
-                        >
+                        <Link to={c.to} onClick={closeAll} className={childClass(false)}>
                           {c.label}
-                        </NavLink>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -106,7 +107,7 @@ export default function Navbar() {
               </li>
             ) : (
               <li key={l.to}>
-                <NavLink to={l.to} className={linkClass} end={l.to === "/"}>
+                <NavLink to={l.to} end={l.to === "/"} className={({ isActive }) => topClass(isActive)}>
                   {l.label}
                 </NavLink>
               </li>
@@ -116,7 +117,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
+          className="grid h-11 w-11 flex-none place-items-center rounded-[10px] lg:hidden"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((o) => !o)}
@@ -152,7 +153,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => setMenu((m) => (m === l.label ? null : l.label))}
-                  className="flex w-full items-center justify-between rounded-full px-3.5 py-2.5 font-head text-[0.92rem] font-medium text-forest-800 hover:bg-lime-100"
+                  className="flex w-full items-center justify-between rounded-full px-3.5 py-2.5 font-head text-[0.92rem] font-semibold text-forest-800 hover:bg-lime-100"
                 >
                   {l.label}
                   <Icon
@@ -166,9 +167,9 @@ export default function Navbar() {
                   <ul className="ml-3 space-y-1 border-l border-line pl-3 pt-1">
                     {l.children.map((c) => (
                       <li key={c.to}>
-                        <NavLink to={c.to} end className={linkClass} onClick={() => setOpen(false)}>
+                        <Link to={c.to} className={childClass(false)} onClick={closeAll}>
                           {c.label}
-                        </NavLink>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -176,7 +177,12 @@ export default function Navbar() {
               </li>
             ) : (
               <li key={l.to}>
-                <NavLink to={l.to} className={linkClass} end={l.to === "/"} onClick={() => setOpen(false)}>
+                <NavLink
+                  to={l.to}
+                  end={l.to === "/"}
+                  className={({ isActive }) => topClass(isActive)}
+                  onClick={closeAll}
+                >
                   {l.label}
                 </NavLink>
               </li>

@@ -20,7 +20,7 @@ export default function Services() {
         environmental projects.
       </PageHero>
 
-      <section className="section">
+      <section id="categories" className="section">
         <div className="container-cc">
           <div className="grid gap-7 lg:grid-cols-2">
             {serviceCategories.map((c, i) => (
@@ -50,7 +50,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section bg-mist">
+      <section id="approach" className="section bg-mist">
         <div className="container-cc">
           <SectionHeading eyebrow="How We Work" title="Our delivery approach">
             A transparent, results-driven lifecycle applied to every project.

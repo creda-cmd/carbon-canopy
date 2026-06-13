@@ -25,7 +25,7 @@ export default function Portfolio() {
       </PageHero>
 
       {/* Showcase */}
-      <section className="section">
+      <section id="showcase" className="section">
         <div className="container-cc">
           <SectionHeading eyebrow="Representative Work" title="The kinds of projects we deliver">
             Illustrative examples of project types across our service areas.
@@ -58,7 +58,7 @@ export default function Portfolio() {
       </section>
 
       {/* Portfolio services */}
-      <section className="section bg-mist">
+      <section id="services" className="section bg-mist">
         <div className="container-cc">
           <SectionHeading eyebrow="Portfolio Services" title="Full project lifecycle support">
             Comprehensive capabilities from concept to completion and learning.
@@ -72,7 +72,7 @@ export default function Portfolio() {
       </section>
 
       {/* Sectors */}
-      <section className="section forest-gradient text-forest-100">
+      <section id="sectors" className="section forest-gradient text-forest-100">
         <div className="container-cc">
           <SectionHeading eyebrow="Sectors Served" title="Where we create impact" light>
             We work across the full spectrum of climate, environment, and community development.

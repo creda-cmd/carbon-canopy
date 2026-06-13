@@ -766,11 +766,47 @@ export const navLinks = [
     to: "/services",
     label: "Our Services",
     children: [
-      { to: "/services", label: "All Services" },
-      { to: "/carbon-projects", label: "Carbon Projects" },
-      { to: "/forestry-landscaping", label: "Forestry & Landscaping" },
-      { to: "/agroforestry", label: "Agroforestry" },
-      { to: "/portfolio", label: "Projects Portfolio" },
+      { to: "/services", label: "Services Overview" },
+      { to: "/services#categories", label: "Service Areas" },
+      { to: "/services#approach", label: "Our Approach" },
+    ],
+  },
+  {
+    to: "/carbon-projects",
+    label: "Carbon Projects",
+    children: [
+      { to: "/carbon-projects", label: "Overview" },
+      { to: "/carbon-projects#services", label: "Carbon Services" },
+      { to: "/carbon-projects#standards", label: "Standards & Methodologies" },
+      { to: "/carbon-projects#approach", label: "Project Lifecycle" },
+    ],
+  },
+  {
+    to: "/forestry-landscaping",
+    label: "Forestry & Landscaping",
+    children: [
+      { to: "/forestry-landscaping", label: "Overview" },
+      { to: "/forestry-landscaping#focus", label: "Key Focus Areas" },
+      { to: "/forestry-landscaping#services", label: "Forestry Services" },
+    ],
+  },
+  {
+    to: "/agroforestry",
+    label: "Agroforestry",
+    children: [
+      { to: "/agroforestry", label: "Overview" },
+      { to: "/agroforestry#services", label: "Agroforestry Services" },
+      { to: "/agroforestry#species", label: "Species We Supply" },
+    ],
+  },
+  {
+    to: "/portfolio",
+    label: "Projects Portfolio",
+    children: [
+      { to: "/portfolio", label: "Overview" },
+      { to: "/portfolio#showcase", label: "Representative Work" },
+      { to: "/portfolio#services", label: "Portfolio Services" },
+      { to: "/portfolio#sectors", label: "Sectors Served" },
     ],
   },
   { to: "/contact", label: "Contact" },

@@ -25,7 +25,7 @@ export default function Forestry() {
       </PageHero>
 
       {/* Intro split */}
-      <section className="section">
+      <section id="focus" className="section">
         <div className="container-cc grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <img src="/img/scene-forest.svg" alt="Forest landscape" className="w-full rounded-xl shadow-md" />
@@ -51,7 +51,7 @@ export default function Forestry() {
       </section>
 
       {/* Service groups */}
-      <section className="section bg-mist">
+      <section id="services" className="section bg-mist">
         <div className="container-cc">
           <SectionHeading eyebrow="Forestry Services" title="Our forestry, nursery & landscaping services">
             A complete offering across the supply, restoration, landscaping, and conservation spectrum.

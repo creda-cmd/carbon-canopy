@@ -44,7 +44,7 @@ export default function Agroforestry() {
         management, and farmer capacity building for resilient, productive farms.
       </PageHero>
 
-      <section className="section">
+      <section id="services" className="section">
         <div className="container-cc">
           <SectionHeading eyebrow="Agroforestry Services" title="Our agroforestry & agricultural services">
             Integrated services that boost productivity, build resilience, and restore soils and trees.
@@ -58,7 +58,7 @@ export default function Agroforestry() {
       </section>
 
       {/* Species */}
-      <section className="section bg-mist">
+      <section id="species" className="section bg-mist">
         <div className="container-cc">
           <SectionHeading eyebrow="Planting Material" title="Species we propagate & supply">
             Quality fruit and multipurpose agroforestry tree species suited to local conditions.

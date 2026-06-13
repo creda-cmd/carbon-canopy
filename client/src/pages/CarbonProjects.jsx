@@ -24,7 +24,7 @@ export default function CarbonProjects() {
         we develop credible, verifiable carbon projects across leading standards.
       </PageHero>
 
-      <section className="section">
+      <section id="services" className="section">
         <div className="container-cc">
           <SectionHeading eyebrow="Carbon Services" title="Our full carbon project capability">
             Comprehensive support across every stage of the carbon project lifecycle.
@@ -38,7 +38,7 @@ export default function CarbonProjects() {
       </section>
 
       {/* Standards */}
-      <section className="section forest-gradient text-forest-100">
+      <section id="standards" className="section forest-gradient text-forest-100">
         <div className="container-cc">
           <SectionHeading eyebrow="Standards Expertise" title="Carbon standards & methodologies" light>
             We develop and support projects across the world's leading carbon standards and frameworks.
@@ -58,7 +58,7 @@ export default function CarbonProjects() {
       </section>
 
       {/* Approach */}
-      <section className="section bg-mist">
+      <section id="approach" className="section bg-mist">
         <div className="container-cc">
           <SectionHeading eyebrow="Project Lifecycle" title="Assess → Verify → Scale">
             A disciplined methodology that turns land and community potential into verified carbon value.

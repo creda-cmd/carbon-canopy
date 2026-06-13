@@ -13,6 +13,10 @@
   h1, h2, h3, h4 {
     @apply font-head text-forest-800 font-bold leading-tight;
   }
+  /* Offset anchored sections so they clear the sticky header. */
+  [id] {
+    scroll-margin-top: 92px;
+  }
   ::selection {
     @apply bg-forest-200 text-forest-900;
   }
