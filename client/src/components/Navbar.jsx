@@ -81,11 +81,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`header-gradient sticky top-0 z-[100] border-b border-lime-300/70 backdrop-blur-md transition-shadow ${
+      className={`sticky top-0 z-[100] backdrop-blur-md transition-shadow ${
         scrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
-      {/* Top row: centered logo, search at right, mobile toggle at left */}
+      {/* Top band (logo) — one solid green, with a contrasting divider line below */}
+      <div className="border-b-2 border-[#2f9e6b] bg-[#bfe94f]">
       <div className="container-cc relative flex h-[72px] items-center justify-center">
         <button
           className="absolute left-0 grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
@@ -117,9 +118,10 @@ export default function Navbar() {
           <Search />
         </div>
       </div>
+      </div>
 
-      {/* Desktop nav row: centered links */}
-      <nav className="hidden border-t border-white/40 lg:block">
+      {/* Desktop nav row (quick links) — a different solid green */}
+      <nav className="hidden bg-[#7fd4a6] lg:block">
         <ul className="container-cc flex flex-nowrap items-center justify-center gap-0.5 py-1.5" ref={dropRef}>
           {navLinks.map((l) =>
             l.children ? (
