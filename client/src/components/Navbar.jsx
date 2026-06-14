@@ -83,8 +83,8 @@ export default function Navbar() {
         scrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
-      {/* Top band (logo) — solid lime green, with a forest-green divider line below */}
-      <div className="border-b-2 border-forest-800 bg-lime-500">
+      {/* Top band (logo) — soft forest green, with a forest-green divider line below */}
+      <div className="border-b-2 border-forest-800 bg-forest-200">
       <div className="container-cc relative flex h-[72px] items-center justify-center">
         <button
           className="absolute left-0 grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
@@ -118,8 +118,8 @@ export default function Navbar() {
       </div>
       </div>
 
-      {/* Desktop nav row (quick links) — solid forest green */}
-      <nav className="hidden bg-forest-200 lg:block">
+      {/* Desktop nav row (quick links) — solid lime green */}
+      <nav className="hidden bg-lime-500 lg:block">
         <ul className="container-cc flex flex-nowrap items-center justify-center gap-0.5 py-1.5" ref={dropRef}>
           {navLinks.map((l) =>
             l.children ? (
