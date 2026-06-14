@@ -5,7 +5,7 @@ import CategoryServices from "../components/CategoryServices";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import CTABand from "../components/CTABand";
-import { carbonGroups, carbonStandards, approachSteps } from "../data/site";
+import { carbonGroups, approachSteps } from "../data/site";
 
 export default function CarbonProjects() {
   useSeo(
@@ -30,26 +30,6 @@ export default function CarbonProjects() {
         title="Choose a category"
         intro="Select a category to jump straight to its carbon services."
       />
-
-      {/* Standards */}
-      <section id="standards" className="section forest-gradient text-forest-100">
-        <div className="container-cc">
-          <SectionHeading eyebrow="Standards Expertise" title="Carbon standards & methodologies" light>
-            We develop and support projects across the world's leading carbon standards and frameworks.
-          </SectionHeading>
-          <Reveal className="flex flex-wrap justify-center gap-3">
-            {carbonStandards.map((s) => (
-              <span
-                key={s}
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 font-head font-medium text-forest-50"
-              >
-                <Icon name="badge" className="h-4 w-4 text-sage-300" />
-                {s}
-              </span>
-            ))}
-          </Reveal>
-        </div>
-      </section>
 
       {/* Approach */}
       <section id="approach" className="section bg-mist">

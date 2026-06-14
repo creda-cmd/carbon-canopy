@@ -403,6 +403,20 @@ export const carbonGroups = [
       "Adaptive Management Plan (AMP) development",
     ],
   },
+  {
+    title: "Carbon Standards Expertise",
+    icon: "badge",
+    items: [
+      "Verra VCS",
+      "VM0047 ARR Methodology",
+      "VM0042 Methodology",
+      "Climate, Community & Biodiversity (CCB)",
+      "Gold Standard",
+      "ART/TREES",
+      "Plan Vivo",
+      "ISO 14064 Frameworks",
+    ],
+  },
 ];
 
 export const carbonStandards = [
@@ -976,7 +990,6 @@ export const searchIndex = [
   ...carbonGroups.flatMap((g) =>
     g.items.map((s) => ({ label: s, to: `/carbon-projects#${slugify(g.title)}`, kind: "Carbon Service" }))
   ),
-  ...carbonStandards.map((s) => ({ label: s, to: "/carbon-projects#standards", kind: "Carbon Standard" })),
   ...forestryGroups.map((g) => ({ label: g.title, to: `/forestry-landscaping#${slugify(g.title)}`, kind: "Forestry Service" })),
   ...forestryGroups.flatMap((g) =>
     g.items.map((s) => ({ label: s, to: `/forestry-landscaping#${slugify(g.title)}`, kind: "Forestry Service" }))
