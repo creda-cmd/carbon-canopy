@@ -38,7 +38,7 @@ export default function Agroforestry() {
       <PageHero
         eyebrow="Agroforestry Solutions & Agriculture"
         title="Transforming farms through agroforestry"
-        crumb="Agroforestry"
+        crumb="Agroforestry Solutions"
       >
         Climate-smart agroforestry design, fruit-tree and agroforestry tree production, integrated pest
         management, and farmer capacity building for resilient, productive farms.

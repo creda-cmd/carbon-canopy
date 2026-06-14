@@ -38,7 +38,7 @@ export default function Footer() {
           <ul className="space-y-2.5 text-sm">
             <li><Link to="/carbon-projects" className="hover:text-white">Carbon Projects</Link></li>
             <li><Link to="/forestry-landscaping" className="hover:text-white">Forestry & Nursery</Link></li>
-            <li><Link to="/agroforestry" className="hover:text-white">Agroforestry</Link></li>
+            <li><Link to="/agroforestry" className="hover:text-white">Agroforestry Solutions</Link></li>
             <li><Link to="/portfolio" className="hover:text-white">Project Portfolio</Link></li>
             <li><Link to="/services" className="hover:text-white">All Services</Link></li>
           </ul>
