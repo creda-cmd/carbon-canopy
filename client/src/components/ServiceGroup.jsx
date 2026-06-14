@@ -2,7 +2,8 @@ import Icon from "./Icon";
 import Reveal from "./Reveal";
 
 // A detailed service group card: icon + title + bulleted list.
-export default function ServiceGroup({ group, delay = 0 }) {
+// `wide` lays the card out full-width with the items in multiple columns.
+export default function ServiceGroup({ group, delay = 0, wide = false }) {
   return (
     <Reveal
       delay={delay}
@@ -14,11 +15,11 @@ export default function ServiceGroup({ group, delay = 0 }) {
         </span>
         <h3 className="m-0 text-[1.12rem]">{group.title}</h3>
       </div>
-      <ul className="m-0 list-none p-0">
+      <ul className={`m-0 list-none p-0 ${wide ? "sm:columns-2 lg:columns-3 sm:gap-x-8" : ""}`}>
         {group.items.map((item) => (
           <li
             key={item}
-            className="leaf-bullet border-b border-dashed border-line py-1.5 text-[0.94rem] last:border-0"
+            className="leaf-bullet break-inside-avoid border-b border-dashed border-line py-1.5 text-[0.94rem] last:border-0"
           >
             {item}
           </li>

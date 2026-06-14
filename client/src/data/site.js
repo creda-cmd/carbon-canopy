@@ -913,7 +913,11 @@ export const searchIndex = [
   { label: "Contact", to: "/contact", kind: "Page" },
   ...servicesByCategory.map((c) => ({ label: c.title, to: `/services#${c.id}`, kind: "Service Category" })),
   ...servicesByCategory.flatMap((c) => c.items.map((s) => ({ label: s, to: `/services#${c.id}`, kind: "Service" }))),
-  ...carbonGroups.map((g) => ({ label: g.title, to: "/carbon-projects#services", kind: "Carbon Service" })),
+  ...carbonGroups.map((g) => ({
+    label: g.title,
+    to: `/carbon-projects#${g.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`,
+    kind: "Carbon Service",
+  })),
   ...carbonStandards.map((s) => ({ label: s, to: "/carbon-projects#standards", kind: "Carbon Standard" })),
   ...forestryGroups.map((g) => ({ label: g.title, to: "/forestry-landscaping#services", kind: "Forestry Service" })),
   ...agroforestryGroups.map((g) => ({ label: g.title, to: "/agroforestry#services", kind: "Agroforestry Service" })),
