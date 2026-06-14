@@ -20,34 +20,6 @@ export default function Services() {
         environmental projects.
       </PageHero>
 
-      {/* Quick category chips */}
-      <section id="categories" className="section pb-0">
-        <div className="container-cc">
-          <SectionHeading eyebrow="Service Categories" title="Four integrated service areas">
-            Choose a category to jump to its full list of services.
-          </SectionHeading>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {servicesByCategory.map((c, i) => (
-              <Reveal key={c.id} delay={i * 70}>
-                <a
-                  href={`#${c.id}`}
-                  className="group flex h-full flex-col rounded-2xl border border-line bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-lime-300 hover:shadow-md"
-                >
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-forest-500 to-lime-500 text-white">
-                    <Icon name={c.icon} className="h-7 w-7" />
-                  </span>
-                  <h3 className="mt-4 text-lg leading-snug">{c.title}</h3>
-                  <span className="mt-3 inline-flex items-center gap-1.5 font-head text-sm font-semibold text-forest-600 group-hover:text-forest-700">
-                    {c.items.length} services
-                    <Icon name="arrow" className="h-4 w-4 rotate-90 transition-transform group-hover:translate-y-0.5" />
-                  </span>
-                </a>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Full category sections */}
       {servicesByCategory.map((c) => (
         <section key={c.id} id={c.id} className="section">

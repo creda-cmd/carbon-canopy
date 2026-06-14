@@ -47,8 +47,8 @@ export default function Agroforestry() {
       <CategoryServices
         groups={agroforestryGroups}
         eyebrow="Agroforestry Services"
-        title="Choose a category"
-        intro="Select a category to jump straight to its agroforestry & agricultural services."
+        title="Our agroforestry & agricultural services"
+        intro="Our full range of agroforestry and agricultural services — use the menu or search to jump to a category."
       />
 
       {/* Species */}

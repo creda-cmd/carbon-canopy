@@ -52,8 +52,8 @@ export default function Forestry() {
       <CategoryServices
         groups={forestryGroups}
         eyebrow="Forestry Services"
-        title="Choose a category"
-        intro="Select a category to jump straight to its forestry, nursery & landscaping services."
+        title="Our forestry, nursery & landscaping services"
+        intro="Our full range of forestry, nursery and landscaping services — use the menu or search to jump to a category."
       />
 
       <CTABand title="Let's restore your landscape" text="Whether you need indigenous seedlings, a nursery, a restoration program, or professional landscaping, our team is ready to help." />

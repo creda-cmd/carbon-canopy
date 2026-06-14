@@ -27,8 +27,8 @@ export default function CarbonProjects() {
       <CategoryServices
         groups={carbonGroups}
         eyebrow="Carbon Services"
-        title="Choose a category"
-        intro="Select a category to jump straight to its carbon services."
+        title="Our carbon project services"
+        intro="Our full range of carbon project development services — use the menu or search to jump to a category."
       />
 
       {/* Approach */}

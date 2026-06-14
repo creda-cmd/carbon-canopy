@@ -60,8 +60,8 @@ export default function Portfolio() {
       <CategoryServices
         groups={portfolioGroups}
         eyebrow="Portfolio Services"
-        title="Choose a category"
-        intro="Select a category to jump straight to its project lifecycle services."
+        title="Our project lifecycle services"
+        intro="Our full range of project development, management and reporting services — use the menu or search to jump to a category."
       />
 
       {/* Sectors */}
