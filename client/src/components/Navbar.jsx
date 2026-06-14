@@ -41,11 +41,11 @@ export default function Navbar() {
 
   const topBase =
     "group relative flex items-center gap-1.5 whitespace-nowrap px-3.5 py-3 font-head text-[0.9rem] font-semibold tracking-wide transition-colors";
-  const topText = (active) => (active ? "text-lime-300" : "text-forest-50 hover:text-lime-300");
+  const topText = (active) => (active ? "text-forest-900" : "text-forest-800 hover:text-forest-900");
 
   const Underline = ({ active }) => (
     <span
-      className={`pointer-events-none absolute inset-x-3 bottom-1 h-[2px] origin-left rounded-full bg-lime-300 transition-transform duration-300 ${
+      className={`pointer-events-none absolute inset-x-3 bottom-1 h-[2px] origin-left rounded-full bg-forest-700 transition-transform duration-300 ${
         active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
       }`}
     />
@@ -84,7 +84,7 @@ export default function Navbar() {
       }`}
     >
       {/* Top band (logo) — solid lime green, with a forest-green divider line below */}
-      <div className="border-b-2 border-forest-800 bg-[#a3e635]">
+      <div className="border-b-2 border-forest-800 bg-lime-500">
       <div className="container-cc relative flex h-[72px] items-center justify-center">
         <button
           className="absolute left-0 grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
@@ -119,7 +119,7 @@ export default function Navbar() {
       </div>
 
       {/* Desktop nav row (quick links) — solid forest green */}
-      <nav className="hidden bg-forest-600 lg:block">
+      <nav className="hidden bg-forest-200 lg:block">
         <ul className="container-cc flex flex-nowrap items-center justify-center gap-0.5 py-1.5" ref={dropRef}>
           {navLinks.map((l) =>
             l.children ? (
@@ -138,7 +138,7 @@ export default function Navbar() {
                   {l.label}
                   <Icon
                     name="chevron"
-                    className={`h-3.5 w-3.5 text-lime-300 transition-transform duration-200 ${
+                    className={`h-3.5 w-3.5 text-forest-700 transition-transform duration-200 ${
                       menu === l.label ? "rotate-180" : ""
                     }`}
                   />
