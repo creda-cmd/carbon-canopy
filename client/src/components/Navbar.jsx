@@ -51,22 +51,22 @@ export default function Navbar() {
     />
   );
 
-  // Compact dropdown row: circular icon, label, and a muted meta line.
+  // Dropdown card: gradient icon chip, label, and a muted meta line.
   const MenuItem = ({ item, onClick }) => (
     <Link
       to={item.to}
       onClick={onClick}
-      className="group/it flex items-center gap-3 rounded-lg px-3 py-2 transition-colors hover:bg-lime-50"
+      className="group/it flex h-full items-start gap-3 rounded-xl border border-line bg-white px-3.5 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-forest-300 hover:shadow-md"
     >
-      <span className="grid h-8 w-8 flex-none place-items-center rounded-full bg-forest-50 text-forest-600 transition-colors group-hover/it:bg-forest-600 group-hover/it:text-white">
-        <Icon name={item.icon || "leaf"} className="h-4 w-4" />
+      <span className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-gradient-to-br from-forest-500 to-lime-500 text-white shadow-sm">
+        <Icon name={item.icon || "leaf"} className="h-5 w-5" />
       </span>
       <span className="min-w-0 flex-1">
         <span className="block font-head text-[0.9rem] font-semibold leading-tight text-forest-800 group-hover/it:text-forest-700">
           {item.label}
         </span>
         {item.desc && (
-          <span className="mt-0.5 block truncate font-body text-[0.74rem] leading-snug text-muted">
+          <span className="mt-1 inline-flex items-center gap-1 font-head text-[0.74rem] font-semibold text-forest-500">
             {item.desc}
           </span>
         )}
@@ -119,7 +119,7 @@ export default function Navbar() {
       </div>
 
       {/* Desktop nav row (quick links) — solid forest green */}
-      <nav className="hidden bg-forest-700 lg:block">
+      <nav className="hidden bg-forest-600 lg:block">
         <ul className="container-cc flex flex-nowrap items-center justify-center gap-0.5 py-1.5" ref={dropRef}>
           {navLinks.map((l) =>
             l.children ? (
@@ -161,19 +161,21 @@ export default function Navbar() {
                         className={`absolute top-[calc(100%-2px)] z-50 max-w-[calc(100vw-2rem)] pt-3 ${posClass} ${widthClass}`}
                       >
                         <div className="relative overflow-hidden rounded-2xl border border-line bg-white shadow-xl animate-dropIn">
-                          <div className="flex items-center justify-between gap-4 bg-gradient-to-r from-forest-700 to-forest-600 px-5 py-3">
-                            <span className="font-head text-[0.8rem] font-bold uppercase tracking-wide text-lime-300">
+                          <span className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-forest-600 via-lime-400 to-lime-300" />
+                          <div className="flex items-center justify-between gap-4 px-5 pb-2 pt-5">
+                            <span className="font-head text-[0.82rem] font-bold uppercase tracking-wide text-forest-700">
                               {l.label}
                             </span>
                             <Link
                               to={l.to}
                               onClick={closeAll}
-                              className="flex-none rounded-full bg-lime-300 px-3 py-1 font-head text-[0.7rem] font-bold uppercase tracking-wide text-forest-800 transition-colors hover:bg-lime-200"
+                              className="group/va flex-none inline-flex items-center gap-1 font-head text-[0.74rem] font-bold uppercase tracking-wide text-forest-600 transition-colors hover:text-forest-800"
                             >
                               View all
+                              <Icon name="arrow" className="h-3.5 w-3.5 transition-transform group-hover/va:translate-x-0.5" />
                             </Link>
                           </div>
-                          <ul className={`relative grid gap-0.5 p-2.5 ${gridClass}`}>
+                          <ul className={`relative grid gap-2.5 p-4 pt-2 ${gridClass}`}>
                             {l.children.map((c) => (
                               <li key={c.to}>
                                 <MenuItem item={c} onClick={closeAll} />

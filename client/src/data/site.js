@@ -936,7 +936,21 @@ export const navLinks = [
   {
     to: "/agroforestry",
     label: "Agroforestry Solutions",
-    children: categoryChildren("/agroforestry", agroforestryGroups),
+    children: [
+      ...categoryChildren("/agroforestry", agroforestryGroups),
+      {
+        to: "/agroforestry#fruit-tree-species",
+        label: "Fruit Tree Species",
+        desc: `${fruitSpecies.length} species`,
+        icon: "fruit",
+      },
+      {
+        to: "/agroforestry#agroforestry-tree-species",
+        label: "Agroforestry Tree Species",
+        desc: `${agroforestrySpecies.length} species`,
+        icon: "sprout",
+      },
+    ],
   },
   {
     to: "/portfolio",
@@ -975,8 +989,10 @@ export const searchIndex = [
   ...portfolioGroups.flatMap((g) =>
     g.items.map((s) => ({ label: s, to: `/portfolio#${slugify(g.title)}`, kind: "Portfolio Service" }))
   ),
-  ...fruitSpecies.map((s) => ({ label: s, to: "/agroforestry#species", kind: "Fruit Species" })),
-  ...agroforestrySpecies.map((s) => ({ label: s, to: "/agroforestry#species", kind: "Agroforestry Species" })),
+  { label: "Fruit Tree Species", to: "/agroforestry#fruit-tree-species", kind: "Agroforestry Service" },
+  { label: "Agroforestry Tree Species", to: "/agroforestry#agroforestry-tree-species", kind: "Agroforestry Service" },
+  ...fruitSpecies.map((s) => ({ label: s, to: "/agroforestry#fruit-tree-species", kind: "Fruit Species" })),
+  ...agroforestrySpecies.map((s) => ({ label: s, to: "/agroforestry#agroforestry-tree-species", kind: "Agroforestry Species" })),
   ...portfolioSectors.map((s) => ({ label: s, to: "/portfolio#sectors", kind: "Sector" })),
   ...values.map((v) => ({ label: v.title, to: "/about", kind: "Core Value" })),
 ];

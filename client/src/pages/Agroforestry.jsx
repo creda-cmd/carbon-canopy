@@ -58,8 +58,12 @@ export default function Agroforestry() {
             Quality fruit and multipurpose agroforestry tree species suited to local conditions.
           </SectionHeading>
           <div className="grid gap-6 lg:grid-cols-2">
-            <SpeciesCard title="Fruit Tree Species" icon="fruit" species={fruitSpecies} />
-            <SpeciesCard title="Agroforestry Tree Species" icon="sprout" species={agroforestrySpecies} />
+            <div id="fruit-tree-species" className="scroll-mt-32">
+              <SpeciesCard title="Fruit Tree Species" icon="fruit" species={fruitSpecies} />
+            </div>
+            <div id="agroforestry-tree-species" className="scroll-mt-32">
+              <SpeciesCard title="Agroforestry Tree Species" icon="sprout" species={agroforestrySpecies} />
+            </div>
           </div>
         </div>
       </section>
