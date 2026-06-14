@@ -138,6 +138,7 @@ const paths = {
     </>
   ),
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  chevron: <path d="M6 9l6 6 6-6" />,
   clock: (
     <>
       <circle cx="12" cy="12" r="9" />

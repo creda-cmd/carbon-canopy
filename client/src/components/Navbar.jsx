@@ -137,9 +137,9 @@ export default function Navbar() {
                 >
                   {l.label}
                   <Icon
-                    name="arrow"
-                    className={`h-3 w-3 rotate-90 text-lime-300 transition-transform ${
-                      menu === l.label ? "-rotate-90" : ""
+                    name="chevron"
+                    className={`h-3.5 w-3.5 text-lime-300 transition-transform duration-200 ${
+                      menu === l.label ? "rotate-180" : ""
                     }`}
                   />
                   <Underline active={isGroupActive(l) || menu === l.label} />
@@ -221,9 +221,9 @@ export default function Navbar() {
                 >
                   {l.label}
                   <Icon
-                    name="arrow"
-                    className={`h-4 w-4 rotate-90 text-forest-500 transition-transform ${
-                      menu === l.label ? "-rotate-90" : ""
+                    name="chevron"
+                    className={`h-4 w-4 text-forest-500 transition-transform duration-200 ${
+                      menu === l.label ? "rotate-180" : ""
                     }`}
                   />
                 </button>
