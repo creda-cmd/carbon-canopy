@@ -85,8 +85,8 @@ export default function Navbar() {
         scrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
-      {/* Top band (logo) — one solid green, with a contrasting divider line below */}
-      <div className="border-b-2 border-[#2f9e6b] bg-[#bfe94f]">
+      {/* Top band (logo) — solid lime green, with a contrasting divider line below */}
+      <div className="border-b-2 border-[#2f9e6b] bg-[#a3e635]">
       <div className="container-cc relative flex h-[72px] items-center justify-center">
         <button
           className="absolute left-0 grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
@@ -146,20 +146,31 @@ export default function Navbar() {
                   />
                   <Underline active={isGroupActive(l) || menu === l.label} />
                 </button>
-                {menu === l.label && (
-                  <div className="absolute left-1/2 top-[calc(100%-2px)] z-50 w-[336px] -translate-x-1/2 pt-3">
-                    <div className="relative overflow-hidden rounded-2xl border border-line bg-white shadow-xl animate-dropIn">
-                      <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-forest-600 to-lime-500" />
-                      <ul className="relative p-2 pt-3">
-                        {l.children.map((c) => (
-                          <li key={c.to}>
-                            <MenuItem item={c} onClick={closeAll} />
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                )}
+                {menu === l.label &&
+                  (() => {
+                    const n = l.children.length;
+                    const cols = n > 10 ? 3 : n > 4 ? 2 : 1;
+                    const widthClass =
+                      cols === 3 ? "w-[760px]" : cols === 2 ? "w-[560px]" : "w-[336px]";
+                    const gridClass =
+                      cols === 3 ? "sm:grid-cols-3" : cols === 2 ? "sm:grid-cols-2" : "";
+                    return (
+                      <div
+                        className={`absolute left-1/2 top-[calc(100%-2px)] z-50 max-w-[calc(100vw-2rem)] -translate-x-1/2 pt-3 ${widthClass}`}
+                      >
+                        <div className="relative overflow-hidden rounded-2xl border border-line bg-white shadow-xl animate-dropIn">
+                          <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-forest-600 to-lime-500" />
+                          <ul className={`relative grid gap-0.5 p-2 pt-3 ${gridClass}`}>
+                            {l.children.map((c) => (
+                              <li key={c.to}>
+                                <MenuItem item={c} onClick={closeAll} />
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    );
+                  })()}
               </li>
             ) : (
               <li key={l.to}>

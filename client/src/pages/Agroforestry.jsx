@@ -1,7 +1,7 @@
 import useSeo from "../hooks/useSeo";
 import PageHero from "../components/PageHero";
 import SectionHeading from "../components/SectionHeading";
-import ServiceGroup from "../components/ServiceGroup";
+import CategoryServices from "../components/CategoryServices";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import CTABand from "../components/CTABand";
@@ -44,18 +44,12 @@ export default function Agroforestry() {
         management, and farmer capacity building for resilient, productive farms.
       </PageHero>
 
-      <section id="services" className="section">
-        <div className="container-cc">
-          <SectionHeading eyebrow="Agroforestry Services" title="Our agroforestry & agricultural services">
-            Integrated services that boost productivity, build resilience, and restore soils and trees.
-          </SectionHeading>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {agroforestryGroups.map((g, i) => (
-              <ServiceGroup key={g.title} group={g} delay={(i % 3) * 80} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <CategoryServices
+        groups={agroforestryGroups}
+        eyebrow="Agroforestry Services"
+        title="Choose a category"
+        intro="Select a category to jump straight to its agroforestry & agricultural services."
+      />
 
       {/* Species */}
       <section id="species" className="section bg-mist">

@@ -1,7 +1,6 @@
 import useSeo from "../hooks/useSeo";
 import PageHero from "../components/PageHero";
-import SectionHeading from "../components/SectionHeading";
-import ServiceGroup from "../components/ServiceGroup";
+import CategoryServices from "../components/CategoryServices";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import CTABand from "../components/CTABand";
@@ -50,19 +49,12 @@ export default function Forestry() {
         </div>
       </section>
 
-      {/* Service groups */}
-      <section id="services" className="section bg-mist">
-        <div className="container-cc">
-          <SectionHeading eyebrow="Forestry Services" title="Our forestry, nursery & landscaping services">
-            A complete offering across the supply, restoration, landscaping, and conservation spectrum.
-          </SectionHeading>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {forestryGroups.map((g, i) => (
-              <ServiceGroup key={g.title} group={g} delay={(i % 3) * 80} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <CategoryServices
+        groups={forestryGroups}
+        eyebrow="Forestry Services"
+        title="Choose a category"
+        intro="Select a category to jump straight to its forestry, nursery & landscaping services."
+      />
 
       <CTABand title="Let's restore your landscape" text="Whether you need indigenous seedlings, a nursery, a restoration program, or professional landscaping, our team is ready to help." />
     </>

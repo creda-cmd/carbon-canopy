@@ -847,6 +847,22 @@ export const showcase = [
   },
 ];
 
+// Turn a category title into a stable URL hash/anchor id.
+export const slugify = (s) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+// Build dropdown children (one per category) that jump to that category's section.
+const categoryChildren = (path, groups) =>
+  groups.map((g) => ({
+    to: `${path}#${slugify(g.title)}`,
+    label: g.title,
+    icon: g.icon,
+    desc: `${g.items.length} services`,
+  }));
+
 export const navLinks = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
@@ -863,40 +879,22 @@ export const navLinks = [
   {
     to: "/carbon-projects",
     label: "Carbon Projects",
-    children: [
-      { to: "/carbon-projects", label: "Overview", icon: "carbon", desc: "Full carbon project capability" },
-      { to: "/carbon-projects#services", label: "Carbon Services", icon: "doc", desc: "Feasibility, PDD, MRV & registration" },
-      { to: "/carbon-projects#standards", label: "Standards & Methodologies", icon: "badge", desc: "Verra, Gold Standard, Plan Vivo & more" },
-      { to: "/carbon-projects#approach", label: "Project Lifecycle", icon: "report", desc: "Our end-to-end methodology" },
-    ],
+    children: categoryChildren("/carbon-projects", carbonGroups),
   },
   {
     to: "/forestry-landscaping",
     label: "Forestry & Landscaping",
-    children: [
-      { to: "/forestry-landscaping", label: "Overview", icon: "tree", desc: "Seedlings, restoration & landscaping" },
-      { to: "/forestry-landscaping#focus", label: "Key Focus Areas", icon: "leaf", desc: "Where we concentrate our work" },
-      { to: "/forestry-landscaping#services", label: "Forestry Services", icon: "sprout", desc: "Nursery, restoration & green spaces" },
-    ],
+    children: categoryChildren("/forestry-landscaping", forestryGroups),
   },
   {
     to: "/agroforestry",
     label: "Agroforestry",
-    children: [
-      { to: "/agroforestry", label: "Overview", icon: "leaf", desc: "Climate-smart farming systems" },
-      { to: "/agroforestry#services", label: "Agroforestry Services", icon: "fruit", desc: "Design, IPM & farmer training" },
-      { to: "/agroforestry#species", label: "Species We Supply", icon: "sprout", desc: "Fruit & multipurpose tree species" },
-    ],
+    children: categoryChildren("/agroforestry", agroforestryGroups),
   },
   {
     to: "/portfolio",
     label: "Projects Portfolio",
-    children: [
-      { to: "/portfolio", label: "Overview", icon: "chart", desc: "End-to-end project delivery" },
-      { to: "/portfolio#showcase", label: "Representative Work", icon: "folder", desc: "The kinds of projects we deliver" },
-      { to: "/portfolio#services", label: "Portfolio Services", icon: "doc", desc: "Development, MERL, GIS & fundraising" },
-      { to: "/portfolio#sectors", label: "Sectors Served", icon: "globe", desc: "Where we create impact" },
-    ],
+    children: categoryChildren("/portfolio", portfolioGroups),
   },
   { to: "/contact", label: "Contact" },
 ];
@@ -913,15 +911,23 @@ export const searchIndex = [
   { label: "Contact", to: "/contact", kind: "Page" },
   ...servicesByCategory.map((c) => ({ label: c.title, to: `/services#${c.id}`, kind: "Service Category" })),
   ...servicesByCategory.flatMap((c) => c.items.map((s) => ({ label: s, to: `/services#${c.id}`, kind: "Service" }))),
-  ...carbonGroups.map((g) => ({
-    label: g.title,
-    to: `/carbon-projects#${g.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`,
-    kind: "Carbon Service",
-  })),
+  ...carbonGroups.map((g) => ({ label: g.title, to: `/carbon-projects#${slugify(g.title)}`, kind: "Carbon Service" })),
+  ...carbonGroups.flatMap((g) =>
+    g.items.map((s) => ({ label: s, to: `/carbon-projects#${slugify(g.title)}`, kind: "Carbon Service" }))
+  ),
   ...carbonStandards.map((s) => ({ label: s, to: "/carbon-projects#standards", kind: "Carbon Standard" })),
-  ...forestryGroups.map((g) => ({ label: g.title, to: "/forestry-landscaping#services", kind: "Forestry Service" })),
-  ...agroforestryGroups.map((g) => ({ label: g.title, to: "/agroforestry#services", kind: "Agroforestry Service" })),
-  ...portfolioGroups.map((g) => ({ label: g.title, to: "/portfolio#services", kind: "Portfolio Service" })),
+  ...forestryGroups.map((g) => ({ label: g.title, to: `/forestry-landscaping#${slugify(g.title)}`, kind: "Forestry Service" })),
+  ...forestryGroups.flatMap((g) =>
+    g.items.map((s) => ({ label: s, to: `/forestry-landscaping#${slugify(g.title)}`, kind: "Forestry Service" }))
+  ),
+  ...agroforestryGroups.map((g) => ({ label: g.title, to: `/agroforestry#${slugify(g.title)}`, kind: "Agroforestry Service" })),
+  ...agroforestryGroups.flatMap((g) =>
+    g.items.map((s) => ({ label: s, to: `/agroforestry#${slugify(g.title)}`, kind: "Agroforestry Service" }))
+  ),
+  ...portfolioGroups.map((g) => ({ label: g.title, to: `/portfolio#${slugify(g.title)}`, kind: "Portfolio Service" })),
+  ...portfolioGroups.flatMap((g) =>
+    g.items.map((s) => ({ label: s, to: `/portfolio#${slugify(g.title)}`, kind: "Portfolio Service" }))
+  ),
   ...fruitSpecies.map((s) => ({ label: s, to: "/agroforestry#species", kind: "Fruit Species" })),
   ...agroforestrySpecies.map((s) => ({ label: s, to: "/agroforestry#species", kind: "Agroforestry Species" })),
   ...portfolioSectors.map((s) => ({ label: s, to: "/portfolio#sectors", kind: "Sector" })),

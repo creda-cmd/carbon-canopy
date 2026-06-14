@@ -1,7 +1,7 @@
 import useSeo from "../hooks/useSeo";
 import PageHero from "../components/PageHero";
 import SectionHeading from "../components/SectionHeading";
-import ServiceGroup from "../components/ServiceGroup";
+import CategoryServices from "../components/CategoryServices";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import CTABand from "../components/CTABand";
@@ -57,19 +57,12 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Portfolio services */}
-      <section id="services" className="section bg-mist">
-        <div className="container-cc">
-          <SectionHeading eyebrow="Portfolio Services" title="Full project lifecycle support">
-            Comprehensive capabilities from concept to completion and learning.
-          </SectionHeading>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {portfolioGroups.map((g, i) => (
-              <ServiceGroup key={g.title} group={g} delay={(i % 3) * 80} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <CategoryServices
+        groups={portfolioGroups}
+        eyebrow="Portfolio Services"
+        title="Choose a category"
+        intro="Select a category to jump straight to its project lifecycle services."
+      />
 
       {/* Sectors */}
       <section id="sectors" className="section forest-gradient text-forest-100">
