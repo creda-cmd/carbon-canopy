@@ -146,12 +146,7 @@ export default function Navbar() {
                 </button>
                 {menu === l.label &&
                   (() => {
-                    const n = l.children.length;
-                    const cols = n > 10 ? 3 : n > 4 ? 2 : 1;
-                    const widthClass =
-                      cols === 3 ? "w-[760px]" : cols === 2 ? "w-[560px]" : "w-[336px]";
-                    const gridClass =
-                      cols === 3 ? "sm:grid-cols-3" : cols === 2 ? "sm:grid-cols-2" : "";
+                    const widthClass = "w-[340px]";
                     const alignRight = ["Projects Portfolio", "Agroforestry Solutions"].includes(l.label);
                     const posClass = alignRight
                       ? "right-0"
@@ -175,7 +170,7 @@ export default function Navbar() {
                               <Icon name="arrow" className="h-3.5 w-3.5 transition-transform group-hover/va:translate-x-0.5" />
                             </Link>
                           </div>
-                          <ul className={`relative grid gap-2.5 p-4 pt-2 ${gridClass}`}>
+                          <ul className="relative grid max-h-[70vh] gap-2 overflow-y-auto p-4 pt-2">
                             {l.children.map((c) => (
                               <li key={c.to}>
                                 <MenuItem item={c} onClick={closeAll} />
