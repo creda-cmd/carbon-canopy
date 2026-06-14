@@ -47,7 +47,7 @@ export default function Contact() {
 
   return (
     <>
-      <PageHero eyebrow="Contact Us" title="Let's grow something lasting together" crumb="Contact">
+      <PageHero eyebrow="Contact Us" title="Let's grow something lasting together" crumb="Contact Us">
         Reach out to discuss your carbon, forestry, or agroforestry project — our team is ready to help.
       </PageHero>
 

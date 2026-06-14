@@ -971,7 +971,7 @@ export const navLinks = [
     label: "Projects Portfolio",
     children: categoryChildren("/portfolio", portfolioGroups),
   },
-  { to: "/contact", label: "Contact" },
+  { to: "/contact", label: "Contact Us" },
 ];
 
 // Flat, searchable index of pages, sections, and key content.
@@ -983,7 +983,7 @@ export const searchIndex = [
   { label: "Forestry & Landscaping", to: "/forestry-landscaping", kind: "Page" },
   { label: "Agroforestry Solutions", to: "/agroforestry", kind: "Page" },
   { label: "Projects Portfolio", to: "/portfolio", kind: "Page" },
-  { label: "Contact", to: "/contact", kind: "Page" },
+  { label: "Contact Us", to: "/contact", kind: "Page" },
   ...servicesByCategory.map((c) => ({ label: c.title, to: `/services#${c.id}`, kind: "Service Category" })),
   ...servicesByCategory.flatMap((c) => c.items.map((s) => ({ label: s, to: `/services#${c.id}`, kind: "Service" }))),
   ...carbonGroups.map((g) => ({ label: g.title, to: `/carbon-projects#${slugify(g.title)}`, kind: "Carbon Service" })),
