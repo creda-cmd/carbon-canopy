@@ -1,6 +1,5 @@
 import { useState } from "react";
 import useSeo from "../hooks/useSeo";
-import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import { company, serviceCategories } from "../data/site";
@@ -47,10 +46,6 @@ export default function Contact() {
 
   return (
     <>
-      <PageHero eyebrow="Contact Us" title="Let's grow something lasting together" crumb="Contact Us">
-        Reach out to discuss your carbon, forestry, or agroforestry project — our team is ready to help.
-      </PageHero>
-
       <section className="section">
         <div className="container-cc grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Info */}

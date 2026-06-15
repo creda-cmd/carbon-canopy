@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useSeo from "../hooks/useSeo";
 import PageHero from "../components/PageHero";
 import SectionHeading from "../components/SectionHeading";
@@ -13,6 +13,13 @@ export default function Services() {
     "Explore CarbonCanopy Solutions services: carbon project development, forestry & nursery, agroforestry & agriculture, and full project portfolio support."
   );
 
+  const { pathname, hash } = useLocation();
+  const navigate = useNavigate();
+
+  const id = hash.slice(1);
+  const active = servicesByCategory.some((c) => c.id === id) ? id : servicesByCategory[0].id;
+  const category = servicesByCategory.find((c) => c.id === active) || servicesByCategory[0];
+
   return (
     <>
       <PageHero eyebrow="Our Services" title="End-to-end climate & land restoration services" crumb="Our Services">
@@ -20,21 +27,38 @@ export default function Services() {
         environmental projects.
       </PageHero>
 
-      {/* Full category sections */}
-      {servicesByCategory.map((c) => (
-        <section key={c.id} id={c.id} className="section">
-          <div className="container-cc">
+      <section className="section">
+        <div className="container-cc">
+          <div className="mb-8 flex flex-wrap justify-center gap-2.5">
+            {servicesByCategory.map((c) => (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => navigate(`${pathname}#${c.id}`)}
+                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 font-head text-sm font-semibold transition-colors ${
+                  c.id === active
+                    ? "border-forest-600 bg-forest-600 text-white"
+                    : "border-line bg-white text-forest-700 hover:border-forest-300"
+                }`}
+              >
+                <Icon name={c.icon} className="h-4 w-4" />
+                {c.title}
+              </button>
+            ))}
+          </div>
+
+          <div id={category.id} className="scroll-mt-32">
             <Reveal className="mb-8 flex items-start gap-4">
               <span className="grid h-16 w-16 flex-none place-items-center rounded-2xl bg-gradient-to-br from-forest-500 to-lime-500 text-white">
-                <Icon name={c.icon} className="h-8 w-8" />
+                <Icon name={category.icon} className="h-8 w-8" />
               </span>
               <div>
-                <h2 className="m-0 text-2xl">{c.title}</h2>
-                <p className="mt-2 max-w-2xl text-muted">{c.blurb}</p>
+                <h2 className="m-0 text-2xl">{category.title}</h2>
+                <p className="mt-2 max-w-2xl text-muted">{category.blurb}</p>
               </div>
             </Reveal>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {c.items.map((item, idx) => (
+              {category.items.map((item, idx) => (
                 <Reveal
                   key={item}
                   delay={(idx % 3) * 60}
@@ -47,12 +71,12 @@ export default function Services() {
                 </Reveal>
               ))}
             </div>
-            <Link to={`/${c.slug}`} className="btn btn-ghost mt-7">
-              Explore {c.title.split(" ")[0]} details <Icon name="arrow" className="h-4 w-4" />
+            <Link to={`/${category.slug}`} className="btn btn-ghost mt-7">
+              Explore {category.title.split(" ")[0]} details <Icon name="arrow" className="h-4 w-4" />
             </Link>
           </div>
-        </section>
-      ))}
+        </div>
+      </section>
 
       <section id="approach" className="section bg-mist">
         <div className="container-cc">

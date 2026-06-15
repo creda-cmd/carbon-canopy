@@ -1,5 +1,4 @@
 import useSeo from "../hooks/useSeo";
-import PageHero from "../components/PageHero";
 import SectionHeading from "../components/SectionHeading";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
@@ -16,11 +15,6 @@ export default function About() {
 
   return (
     <>
-      <PageHero eyebrow="About Us" title="Restoring landscapes, creating carbon value" crumb="About Us">
-        We are a professional carbon, forestry, and climate-smart consultancy committed to measurable
-        environmental, social, and economic impact.
-      </PageHero>
-
       {/* Vision & Mission */}
       <section className="section">
         <div className="container-cc grid gap-6 md:grid-cols-2">
