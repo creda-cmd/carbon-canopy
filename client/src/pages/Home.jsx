@@ -4,7 +4,7 @@ import Icon from "../components/Icon";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import CTABand from "../components/CTABand";
-import { stats, carbonStandards } from "../data/site";
+import { stats, carbonStandards, showcase } from "../data/site";
 
 export default function Home() {
   useSeo(
@@ -23,7 +23,9 @@ export default function Home() {
               Nature-Based Solutions for a Sustainable Future
             </span>
             <h1 className="text-4xl font-extrabold text-white sm:text-5xl lg:text-[3.4rem]">
-              Growing <span className="text-lime-300">Climate Solutions</span> Naturally
+              Restoring <span className="text-lime-300">Landscapes</span>. Creating{" "}
+              <span className="text-lime-300">Carbon Value</span>. Empowering{" "}
+              <span className="text-lime-300">Communities</span>.
             </h1>
             <p className="mt-5 max-w-xl text-lg text-forest-100">
               CarbonCanopy Solutions develops high-integrity carbon projects, restores forests and
@@ -82,6 +84,39 @@ export default function Home() {
               </span>
             ))}
           </Reveal>
+        </div>
+      </section>
+
+      {/* Completed projects */}
+      <section className="section bg-mist">
+        <div className="container-cc">
+          <SectionHeading eyebrow="Our Work" title="Completed projects">
+            A selection of projects we've delivered across carbon, forestry, and agroforestry.
+          </SectionHeading>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {showcase.map((p, i) => (
+              <Reveal
+                key={p.title}
+                delay={(i % 3) * 80}
+                className="group h-full overflow-hidden rounded-xl border border-line bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-md"
+              >
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={`/img/scene-${p.scene}.svg`}
+                    alt={p.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute left-3.5 top-3.5 rounded-full bg-white/90 px-3 py-1.5 font-head text-[0.72rem] font-semibold uppercase tracking-wide text-forest-700">
+                    {p.tag}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg">{p.title}</h3>
+                  <p className="mt-1 text-[0.93rem]">{p.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
