@@ -56,20 +56,15 @@ export default function Navbar() {
     <Link
       to={item.to}
       onClick={onClick}
-      className="group/it flex h-full items-start gap-3 rounded-xl border border-line bg-white px-3.5 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-forest-300 hover:shadow-md"
+      className="group/it flex h-full items-center gap-2.5 rounded-lg border border-line bg-white px-2.5 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-forest-300 hover:shadow-md"
     >
-      <span className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-gradient-to-br from-forest-500 to-lime-500 text-white shadow-sm">
-        <Icon name={item.icon || "leaf"} className="h-5 w-5" />
+      <span className="grid h-7 w-7 flex-none place-items-center rounded-md bg-gradient-to-br from-forest-500 to-lime-500 text-white shadow-sm">
+        <Icon name={item.icon || "leaf"} className="h-4 w-4" />
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block font-head text-[0.9rem] font-semibold leading-tight text-forest-800 group-hover/it:text-forest-700">
+        <span className="block font-head text-[0.82rem] font-semibold leading-tight text-forest-800 group-hover/it:text-forest-700">
           {item.label}
         </span>
-        {item.desc && (
-          <span className="mt-1 inline-flex items-center gap-1 font-head text-[0.74rem] font-semibold text-forest-500">
-            {item.desc}
-          </span>
-        )}
       </span>
     </Link>
   );
@@ -146,7 +141,7 @@ export default function Navbar() {
                 </button>
                 {menu === l.label &&
                   (() => {
-                    const widthClass = "w-[340px]";
+                    const widthClass = "w-[460px]";
                     const alignRight = ["Projects Portfolio", "Agroforestry Solutions"].includes(l.label);
                     const posClass = alignRight
                       ? "right-0"
@@ -170,7 +165,7 @@ export default function Navbar() {
                               <Icon name="arrow" className="h-3.5 w-3.5 transition-transform group-hover/va:translate-x-0.5" />
                             </Link>
                           </div>
-                          <ul className="relative grid max-h-[70vh] gap-2 overflow-y-auto p-4 pt-2">
+                          <ul className="relative grid max-h-[70vh] grid-cols-2 gap-1.5 overflow-y-auto p-3 pt-2">
                             {l.children.map((c) => (
                               <li key={c.to}>
                                 <MenuItem item={c} onClick={closeAll} />
