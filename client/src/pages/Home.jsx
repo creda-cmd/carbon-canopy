@@ -4,14 +4,7 @@ import Icon from "../components/Icon";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import CTABand from "../components/CTABand";
-import {
-  company,
-  stats,
-  serviceCategories,
-  approachSteps,
-  carbonStandards,
-  values,
-} from "../data/site";
+import { stats, carbonStandards } from "../data/site";
 
 export default function Home() {
   useSeo(
@@ -74,98 +67,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Intro / mission */}
-      <section className="section">
-        <div className="container-cc grid items-center gap-12 lg:grid-cols-2">
-          <Reveal>
-            <img
-              src="/img/scene-forest.svg"
-              alt="Restored forest landscape"
-              className="w-full rounded-xl shadow-md"
-            />
-          </Reveal>
-          <Reveal delay={120}>
-            <span className="eyebrow mb-3">Who We Are</span>
-            <h2 className="text-3xl md:text-4xl">
-              A professional carbon &amp; forestry consultancy rooted in nature
-            </h2>
-            <p className="mt-4 text-muted">{company.mission}</p>
-            <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
-              {[
-                "High-integrity carbon projects",
-                "Indigenous forest restoration",
-                "Climate-smart agroforestry",
-                "Community empowerment & FPIC",
-              ].map((t) => (
-                <li key={t} className="check-bullet">
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <Link to="/about" className="btn btn-ghost mt-7">
-              More About Us <Icon name="arrow" className="h-4 w-4" />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Service categories */}
-      <section className="section bg-mist">
-        <div className="container-cc">
-          <SectionHeading eyebrow="What We Do" title="Our Core Service Areas">
-            From carbon project development to forestry, agroforestry, and full project management — an
-            end-to-end partner for climate and land restoration.
-          </SectionHeading>
-          <div className="grid gap-6 md:grid-cols-2">
-            {serviceCategories.map((c, i) => (
-              <Reveal key={c.slug} delay={i * 80}>
-                <Link to={`/${c.slug}`} className="card group flex h-full flex-col">
-                  <span className="mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-forest-50 text-forest-700">
-                    <Icon name={c.icon} className="h-7 w-7" />
-                  </span>
-                  <h3 className="text-xl">{c.title}</h3>
-                  <p className="mt-1 text-[0.97rem]">{c.blurb}</p>
-                  <ul className="mt-4 grid gap-1.5">
-                    {c.highlights.map((h) => (
-                      <li key={h} className="leaf-bullet text-sm">
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="mt-5 inline-flex items-center gap-1.5 font-head text-sm font-semibold text-forest-600">
-                    Learn more
-                    <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Approach */}
-      <section className="section forest-gradient text-forest-100">
-        <div className="container-cc">
-          <SectionHeading eyebrow="Our Approach" title="A proven path from idea to impact" light>
-            Every engagement follows a rigorous, transparent lifecycle that delivers measurable,
-            verifiable results.
-          </SectionHeading>
-          <Reveal className="flex flex-wrap items-center justify-center gap-3">
-            {approachSteps.map((step, i) => (
-              <div key={step} className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-5 py-3 font-head font-semibold text-forest-50">
-                  <span className="h-2.5 w-2.5 rounded-full bg-sage-300" />
-                  {step}
-                </span>
-                {i < approachSteps.length - 1 && (
-                  <Icon name="arrow" className="hidden h-5 w-5 text-sage-300 sm:block" />
-                )}
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
       {/* Standards */}
       <section className="section">
         <div className="container-cc">
@@ -181,28 +82,6 @@ export default function Home() {
               </span>
             ))}
           </Reveal>
-        </div>
-      </section>
-
-      {/* Values teaser */}
-      <section className="section bg-mist">
-        <div className="container-cc">
-          <SectionHeading eyebrow="Our Values" title="Principles that guide every project">
-            Ten core values keep our work credible, inclusive, and impact-driven.
-          </SectionHeading>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {values.slice(0, 6).map((v, i) => (
-              <Reveal key={v.title} delay={i * 60} className="card">
-                <h3 className="text-lg">{v.title}</h3>
-                <p className="mt-1 text-[0.93rem]">{v.desc}</p>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Link to="/about" className="btn btn-ghost">
-              See all 10 values <Icon name="arrow" className="h-4 w-4" />
-            </Link>
-          </div>
         </div>
       </section>
 
