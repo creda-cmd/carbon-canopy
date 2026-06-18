@@ -174,16 +174,23 @@ export default function Home() {
             We develop and support projects across the world's leading voluntary and jurisdictional
             carbon standards.
           </SectionHeading>
-          <Reveal className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <Reveal className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {carbonStandards.map((s) => (
               <div 
                 key={s} 
-                className="group h-full overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
+                className="group h-full overflow-hidden rounded-3xl border-2 border-lime-400/50 bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-lime-500"
               >
-                <div className="rounded-[calc(1rem-1px)] bg-white px-5 py-5 text-center text-forest-900">
-                  <div className="h-1 w-full rounded-full bg-lime-400" />
-                  <Icon name="badge" className="mx-auto my-3 h-5 w-5 text-lime-500" />
-                  <p className="font-semibold text-forest-900 text-sm">{s}</p>
+                <div className="flex flex-col p-8 text-center">
+                  <div className="mb-4 flex justify-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-lime-300 to-lime-400 text-white">
+                      <Icon name="badge" className="h-8 w-8" />
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-forest-900">{s}</h3>
+                  <div className="mt-6 h-1 w-12 rounded-full bg-lime-500 mx-auto" />
+                  <p className="mt-4 text-sm leading-6 text-forest-600">
+                    Certified expertise in {s.toLowerCase()} standards and methodologies.
+                  </p>
                 </div>
               </div>
             ))}
