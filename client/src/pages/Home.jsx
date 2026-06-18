@@ -80,18 +80,18 @@ export default function Home() {
                 >
                   <img src={slide.image} alt={slide.alt} className="h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                  <div className="absolute inset-x-6 bottom-6 flex w-auto flex-col items-center gap-4 text-white md:flex-row md:justify-center">
-                    <div className="text-center md:mr-6 md:text-left">
+                  <div className="absolute inset-0 flex items-center justify-center text-center px-6 text-white">
+                    <div className="max-w-2xl">
                       <p className="text-sm font-semibold uppercase tracking-[0.24em] text-lime-200">{slide.title}</p>
-                      <p className="mt-2 text-sm leading-6 max-w-xl">{slide.desc}</p>
-                    </div>
-                    <div className="mt-2 flex gap-3">
-                      <Link to="/services" className="btn btn-primary">
-                        View Services
-                      </Link>
-                      <Link to="/contact" className="btn btn-light">
-                        Contact Us
-                      </Link>
+                      <p className="mt-3 text-sm leading-6">{slide.desc}</p>
+                      <div className="mt-6 flex justify-center gap-4">
+                        <Link to="/services" className="btn btn-primary">
+                          View Services
+                        </Link>
+                        <Link to="/contact" className="btn btn-light">
+                          Contact Us
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
