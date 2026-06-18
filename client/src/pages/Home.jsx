@@ -75,13 +75,13 @@ export default function Home() {
             <div className="group overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
               <div className="flex h-full flex-col justify-center rounded-[calc(1rem-1px)] bg-white p-10 text-center text-forest-900">
                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-forest-600">
-                  Project Navigation
+                  Our Services
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold text-forest-900">
-                  View Services
+                  Explore solutions built for restoration and carbon value.
                 </h2>
                 <p className="mt-4 text-sm leading-6 text-forest-600">
-                  Choose your next step from the buttons below while the imagery updates on the right.
+                  Browse our service offerings, then reach out to discuss a custom project plan or next steps.
                 </p>
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
                   <Link to="/services" className="btn btn-primary w-full sm:w-auto">
@@ -91,6 +91,9 @@ export default function Home() {
                     Contact Us
                   </Link>
                 </div>
+                <p className="mt-6 text-sm leading-6 text-forest-600">
+                  Need help selecting the right package? Our team can support scoping, verification, and long-term landscape outcomes.
+                </p>
               </div>
             </div>
 
@@ -140,7 +143,8 @@ export default function Home() {
                         <Icon name={item.icon} className="h-5 w-5" />
                       </div>
                     </div>
-                    <h3 className="font-bold text-forest-900 text-base">{item.step}</h3>
+                    <div className="h-1 w-full rounded-full bg-lime-400" />
+                    <h3 className="mt-3 font-bold text-forest-900 text-base">{item.step}</h3>
                     <p className="mt-2 text-sm text-forest-600">{item.desc}</p>
                   </div>
                 </div>
@@ -167,7 +171,8 @@ export default function Home() {
                 className="group h-full overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="rounded-[calc(1rem-1px)] bg-white px-5 py-5 text-center text-forest-900">
-                  <Icon name="badge" className="mx-auto mb-2 h-5 w-5 text-lime-500" />
+                  <div className="h-1 w-full rounded-full bg-lime-400" />
+                  <Icon name="badge" className="mx-auto my-3 h-5 w-5 text-lime-500" />
                   <p className="font-semibold text-forest-900 text-sm">{s}</p>
                 </div>
               </div>
