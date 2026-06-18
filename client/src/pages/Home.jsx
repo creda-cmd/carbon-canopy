@@ -87,13 +87,26 @@ export default function Home() {
                   <Link to="/services" className="btn btn-primary w-full sm:w-auto">
                     View Services
                   </Link>
-                  <Link to="/contact" className="btn btn-light w-full sm:w-auto">
+                  <Link to="/contact" className="btn bg-lime-500 text-white hover:bg-lime-600 w-full sm:w-auto shadow-md">
                     Contact Us
                   </Link>
                 </div>
                 <p className="mt-6 text-sm leading-6 text-forest-600">
                   Need help selecting the right package? Our team can support scoping, verification, and long-term landscape outcomes.
                 </p>
+                <div className="mt-8 rounded-[1.5rem] bg-lime-500/10 p-5 text-left text-forest-900">
+                  <p className="text-sm leading-6">
+                    Prefer a direct conversation? We can connect you to project scoping and climate advisory support.
+                  </p>
+                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <Link to="/contact" className="btn bg-lime-600 text-white hover:bg-lime-700 w-full sm:w-auto">
+                      Contact Us
+                    </Link>
+                    <span className="text-sm text-forest-600">
+                      Or call us for a faster response.
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
