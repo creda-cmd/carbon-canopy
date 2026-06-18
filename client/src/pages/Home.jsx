@@ -34,6 +34,20 @@ export default function Home() {
       title: "Agroforestry Systems",
       desc: "Integrated tree-crop systems that boost productivity and climate resilience.",
     },
+    {
+      id: 4,
+      image: "/img/transition-4.jpg",
+      alt: "Community engagement",
+      title: "Community Engagement",
+      desc: "Local stakeholders collaborating on sustainable land use and livelihoods.",
+    },
+    {
+      id: 5,
+      image: "/img/transition-5.jpg",
+      alt: "Environmental impact",
+      title: "Climate & Biodiversity Impact",
+      desc: "Measurable environmental and social impact from restoration and carbon work.",
+    },
   ];
 
   const [activeSlide, setActiveSlide] = useState(0);
@@ -66,12 +80,12 @@ export default function Home() {
                 >
                   <img src={slide.image} alt={slide.alt} className="h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 flex flex-col items-start gap-4 text-white md:flex-row md:items-center md:justify-between">
-                    <div className="max-w-xl">
+                  <div className="absolute inset-x-6 bottom-6 flex w-auto flex-col items-center gap-4 text-white md:flex-row md:justify-center">
+                    <div className="text-center md:mr-6 md:text-left">
                       <p className="text-sm font-semibold uppercase tracking-[0.24em] text-lime-200">{slide.title}</p>
-                      <p className="mt-2 text-sm leading-6">{slide.desc}</p>
+                      <p className="mt-2 text-sm leading-6 max-w-xl">{slide.desc}</p>
                     </div>
-                    <div className="mt-4 flex gap-3 md:mt-0">
+                    <div className="mt-2 flex gap-3">
                       <Link to="/services" className="btn btn-primary">
                         View Services
                       </Link>
