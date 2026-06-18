@@ -69,7 +69,7 @@ export default function Home() {
   return (
     <>
       {/* Transition Section */}
-      <section id="transition" className="section overflow-hidden">
+      <section id="transition" className="section overflow-hidden bg-lime-50">
         <div className="container-cc">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.7fr] items-stretch">
             <div className="group overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
@@ -94,14 +94,11 @@ export default function Home() {
                 <p className="mt-6 text-sm leading-6 text-forest-600">
                   Need help selecting the right package? Our team can support scoping, verification, and long-term landscape outcomes.
                 </p>
-                <div className="mt-8 rounded-[1.5rem] bg-lime-500/10 p-5 text-left text-forest-900">
+                <div className="mt-8 rounded-[1.5rem] bg-lime-400/10 p-5 text-left text-forest-900">
                   <p className="text-sm leading-6">
                     Prefer a direct conversation? We can connect you to project scoping and climate advisory support.
                   </p>
                   <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
-                    <Link to="/contact" className="btn bg-lime-600 text-white hover:bg-lime-700 w-full sm:w-auto">
-                      Contact Us
-                    </Link>
                     <span className="text-sm text-forest-600">
                       Or call us for a faster response.
                     </span>
@@ -139,7 +136,7 @@ export default function Home() {
       </section>
 
       {/* Our Approach */}
-      <section id="approach" className="section bg-gradient-to-b from-white to-lime-50">
+      <section id="approach" className="section bg-emerald-50">
         <div className="container-cc">
           <SectionHeading 
             eyebrow="Our Approach" 
@@ -168,7 +165,7 @@ export default function Home() {
       </section>
 
       {/* Standards */}
-      <section id="standards" className="section bg-forest-50">
+      <section id="standards" className="section bg-lime-100">
         <div className="container-cc">
           <SectionHeading 
             eyebrow="Standards & Methodologies" 
