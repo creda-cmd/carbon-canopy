@@ -68,34 +68,55 @@ export default function Home() {
 
   return (
     <>
-      {/* Transition Carousel */}
+      {/* Transition Section */}
       <section id="transition" className="section overflow-hidden">
         <div className="container-cc">
-          <div className="mx-auto max-w-6xl">
-            <div className="relative h-72 rounded-3xl shadow-lg md:h-96 lg:h-[520px] overflow-hidden">
-              {transitionSlides.map((slide, idx) => (
-                <div
-                  key={slide.id}
-                  className={`absolute inset-0 transition-opacity duration-700 ${idx === activeSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"}`}
-                >
-                  <img src={slide.image} alt={slide.alt} className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                  <div className="absolute inset-0 flex items-center justify-center text-center px-6 text-white">
-                    <div className="max-w-2xl">
-                      <p className="text-sm font-semibold uppercase tracking-[0.24em] text-lime-200">{slide.title}</p>
-                      <p className="mt-3 text-sm leading-6">{slide.desc}</p>
-                      <div className="mt-6 flex justify-center gap-4">
-                        <Link to="/services" className="btn btn-primary">
-                          View Services
-                        </Link>
-                        <Link to="/contact" className="btn btn-light">
-                          Contact Us
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.7fr] items-stretch">
+            <div className="group overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+              <div className="flex h-full flex-col justify-center rounded-[calc(1rem-1px)] bg-white p-10 text-center text-forest-900">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-forest-600">
+                  Project Navigation
+                </p>
+                <h2 className="mt-4 text-3xl font-semibold text-forest-900">
+                  View Services
+                </h2>
+                <p className="mt-4 text-sm leading-6 text-forest-600">
+                  Choose your next step from the buttons below while the imagery updates on the right.
+                </p>
+                <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+                  <Link to="/services" className="btn btn-primary w-full sm:w-auto">
+                    View Services
+                  </Link>
+                  <Link to="/contact" className="btn btn-light w-full sm:w-auto">
+                    Contact Us
+                  </Link>
                 </div>
-              ))}
+              </div>
+            </div>
+
+            <div className="relative h-[720px] overflow-hidden rounded-3xl shadow-lg lg:h-[780px]">
+              <img
+                src={transitionSlides[activeSlide].image}
+                alt={transitionSlides[activeSlide].alt}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute inset-x-6 bottom-10 text-white">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-lime-200">
+                  {transitionSlides[activeSlide].title}
+                </p>
+                <p className="mt-3 max-w-2xl text-sm leading-6">{transitionSlides[activeSlide].desc}</p>
+              </div>
+              <div className="absolute bottom-6 left-6 right-6 flex justify-center gap-2">
+                {transitionSlides.map((_, dotIndex) => (
+                  <button
+                    key={dotIndex}
+                    onClick={() => setActiveSlide(dotIndex)}
+                    className={`h-3 w-3 rounded-full transition-all ${dotIndex === activeSlide ? "bg-white" : "bg-white/40"}`}
+                    aria-label={`Slide ${dotIndex + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -110,25 +131,18 @@ export default function Home() {
           />
           
           <Reveal className="mt-16">
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-7">
-              {approachSteps.map((item, idx) => (
-                <div key={item.step} className="group relative">
-                  <div className="rounded-2xl border border-forest-200 bg-gradient-to-br from-lime-50 to-white p-6 text-center transition-all hover:shadow-lg hover:border-lime-400">
-                    <div className="mb-4 flex justify-center">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-lime-300 to-lime-400 text-white">
-                        <Icon name={item.icon} className="h-6 w-6" />
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {approachSteps.map((item) => (
+                <div key={item.step} className="group h-full overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                  <div className="rounded-[calc(1rem-1px)] bg-white p-4 text-center text-forest-900">
+                    <div className="mb-3 flex items-center justify-center">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-lime-300 to-lime-400 text-white">
+                        <Icon name={item.icon} className="h-5 w-5" />
                       </div>
                     </div>
-                    <h3 className="font-bold text-forest-900 text-lg">{item.step}</h3>
+                    <h3 className="font-bold text-forest-900 text-base">{item.step}</h3>
                     <p className="mt-2 text-sm text-forest-600">{item.desc}</p>
                   </div>
-                  {idx < approachSteps.length - 1 && (
-                    <div className="absolute right-0 top-1/2 hidden w-8 -translate-y-1/2 translate-x-1/2 lg:block">
-                      <svg className="text-lime-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
@@ -150,10 +164,12 @@ export default function Home() {
             {carbonStandards.map((s) => (
               <div 
                 key={s} 
-                className="rounded-xl border border-forest-200 bg-white p-4 text-center transition-all hover:border-lime-400 hover:shadow-md"
+                className="group h-full overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
               >
-                <Icon name="badge" className="mx-auto mb-2 h-5 w-5 text-lime-500" />
-                <p className="font-semibold text-forest-900 text-sm">{s}</p>
+                <div className="rounded-[calc(1rem-1px)] bg-white px-5 py-5 text-center text-forest-900">
+                  <Icon name="badge" className="mx-auto mb-2 h-5 w-5 text-lime-500" />
+                  <p className="font-semibold text-forest-900 text-sm">{s}</p>
+                </div>
               </div>
             ))}
           </Reveal>
