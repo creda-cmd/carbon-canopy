@@ -430,6 +430,27 @@ export const carbonStandards = [
   "ISO 14064 Frameworks",
 ];
 
+export const homeNavGuides = [
+  {
+    to: "/services",
+    label: "Explore Services",
+    desc: "View our service categories and solutions.",
+    icon: "layers",
+  },
+  {
+    to: "/portfolio",
+    label: "Projects Portfolio",
+    desc: "See representative completed projects and outcomes.",
+    icon: "folder",
+  },
+  {
+    to: "/contact",
+    label: "Contact Us",
+    desc: "Reach out for project inquiries and next steps.",
+    icon: "phone",
+  },
+];
+
 // Forestry, Landscaping & Nursery groups
 export const forestryGroups = [
   {
@@ -921,7 +942,6 @@ const categoryChildren = (path, groups) =>
     to: `${path}#${slugify(g.title)}`,
     label: g.title,
     icon: g.icon,
-    desc: `${g.items.length} services`,
   }));
 
 export const navLinks = [
@@ -930,6 +950,7 @@ export const navLinks = [
   {
     to: "/services",
     label: "Our Services",
+    icon: "layers",
     children: [
       { to: "/services#carbon", label: "Carbon Project Development", icon: "carbon", desc: "Feasibility, PDD, MRV & registration" },
       { to: "/services#forestry", label: "Forestry & Environmental", icon: "tree", desc: "Propagation, nurseries & restoration" },
@@ -940,16 +961,19 @@ export const navLinks = [
   {
     to: "/carbon-projects",
     label: "Carbon Projects",
+    icon: "carbon",
     children: categoryChildren("/carbon-projects", carbonGroups),
   },
   {
     to: "/forestry-landscaping",
     label: "Forestry & Landscaping",
+    icon: "tree",
     children: categoryChildren("/forestry-landscaping", forestryGroups),
   },
   {
     to: "/agroforestry",
     label: "Agroforestry Solutions",
+    icon: "leaf",
     children: [
       ...categoryChildren("/agroforestry", agroforestryGroups),
       {
@@ -969,6 +993,7 @@ export const navLinks = [
   {
     to: "/portfolio",
     label: "Projects Portfolio",
+    icon: "chart",
     children: categoryChildren("/portfolio", portfolioGroups),
   },
   { to: "/contact", label: "Contact Us" },

@@ -2,31 +2,57 @@ import useSeo from "../hooks/useSeo";
 import SectionHeading from "../components/SectionHeading";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
-import CTABand from "../components/CTABand";
 import { company, values } from "../data/site";
 
-const _t = company.taglines;
+const featuredValues = [
+  "Integrity",
+  "Innovation",
+  "Environmental Stewardship",
+  "Community Empowerment",
+  "Impact-Driven",
+  "Accountability",
+];
+
+const sectionStyles = [
+  "from-emerald-500 to-lime-300",
+  "from-sky-500 to-cyan-300",
+  "from-amber-500 to-orange-300",
+  "from-violet-500 to-fuchsia-400",
+  "from-rose-500 to-pink-300",
+  "from-lime-500 to-emerald-300",
+];
+
+const valueIcons = {
+  Integrity: "shield",
+  Innovation: "grad",
+  "Environmental Stewardship": "leaf",
+  "Community Empowerment": "users",
+  "Impact-Driven": "chart",
+  Accountability: "check",
+};
 
 export default function About() {
   useSeo(
     "About Us",
-    "Learn about CarbonCanopy Solutions — our vision, mission, ten core values, and our motto: Restoring Landscapes. Creating Carbon Value. Empowering Communities."
+    "Learn about CarbonCanopy Solutions — our vision, mission, and six core values that guide our work."
   );
+
+  const displayedValues = values.filter((value) => featuredValues.includes(value.title));
 
   return (
     <>
       {/* Vision & Mission */}
       <section className="section">
         <div className="container-cc grid gap-6 md:grid-cols-2">
-          <Reveal className="rounded-2xl border border-line bg-mist p-9">
-            <span className="mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-forest-600 text-white">
+          <Reveal className="rounded-3xl border border-line bg-forest-50 p-9">
+            <span className="mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-emerald-600 text-white">
               <Icon name="globe" className="h-7 w-7" />
             </span>
             <h2 className="text-2xl">Our Vision</h2>
             <p className="mt-3 text-muted">{company.vision}</p>
           </Reveal>
-          <Reveal delay={120} className="rounded-2xl border border-line bg-mist p-9">
-            <span className="mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-forest-600 text-white">
+          <Reveal delay={120} className="rounded-3xl border border-line bg-sky-50 p-9">
+            <span className="mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-sky-600 text-white">
               <Icon name="sprout" className="h-7 w-7" />
             </span>
             <h2 className="text-2xl">Our Mission</h2>
@@ -35,64 +61,31 @@ export default function About() {
         </div>
       </section>
 
-      {/* Motto band */}
-      <section className="section cta-gradient text-center text-forest-100">
-        <div className="container-cc">
-          <Reveal>
-            <span className="eyebrow mb-3 justify-center text-sage-300">Our Motto</span>
-            <p className="mx-auto max-w-3xl font-head text-2xl font-semibold text-white md:text-4xl">
-              “{company.motto}”
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Core values */}
       <section className="section">
         <div className="container-cc">
-          <SectionHeading eyebrow="Core Values" title="Ten principles that guide our work">
-            Our values define how we operate, partner, and deliver impact across every engagement.
+          <SectionHeading eyebrow="Core Values" title="Six values that matter most">
+            We focus on the strongest principles that shape our services, partnerships, and impact.
           </SectionHeading>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((v, i) => (
-              <Reveal
-                key={v.title}
-                delay={(i % 3) * 80}
-                className="h-full rounded-xl border border-line bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                <span className="mb-3.5 grid h-12 w-12 place-items-center rounded-xl bg-forest-50 font-head text-xl font-bold text-forest-400">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-lg">{v.title}</h3>
-                <p className="mt-1 text-[0.93rem]">{v.desc}</p>
+            {displayedValues.map((value, index) => (
+              <Reveal key={value.title} delay={(index % 3) * 80} className="h-full">
+                <div
+                  className={`group h-full overflow-hidden rounded-3xl border border-line bg-gradient-to-br p-[1px] shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md ${sectionStyles[index % sectionStyles.length]}`}
+                >
+                  <div className="h-full overflow-hidden rounded-[calc(1rem-1px)] bg-white p-6">
+                    <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-forest-50 text-forest-600">
+                      <Icon name={valueIcons[value.title] ?? "leaf"} className="h-6 w-6" />
+                    </span>
+                    <h3 className="text-lg font-semibold text-forest-900">{value.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-forest-700">{value.desc}</p>
+                  </div>
+                </div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Taglines */}
-      <section className="section bg-mist">
-        <div className="container-cc">
-          <SectionHeading eyebrow="What We Stand For" title="Our promise, in a few words">
-            Different ways we express our commitment to nature-based climate action.
-          </SectionHeading>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {_t.map((t, i) => (
-              <Reveal
-                key={t}
-                delay={(i % 3) * 70}
-                className="flex items-center gap-3 rounded-xl border border-line bg-white p-5 shadow-sm"
-              >
-                <Icon name="leaf" className="h-6 w-6 flex-none text-forest-500" />
-                <span className="font-head font-medium text-forest-800">“{t}”</span>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CTABand title="Work with a team that delivers measurable impact" />
     </>
   );
 }

@@ -40,7 +40,7 @@ export default function Navbar() {
   };
 
   const topBase =
-    "group relative flex items-center gap-1.5 whitespace-nowrap px-3.5 py-3 font-head text-[0.9rem] font-semibold tracking-wide transition-colors";
+    "group relative flex items-center gap-1 whitespace-nowrap px-3 py-2.5 font-head text-[0.88rem] font-semibold tracking-wide transition-colors";
   const topText = (active) => (active ? "text-forest-900" : "text-forest-800 hover:text-forest-900");
 
   const Underline = ({ active }) => (
@@ -52,20 +52,34 @@ export default function Navbar() {
   );
 
   // Dropdown card: gradient icon chip, label, and a muted meta line.
-  const MenuItem = ({ item, onClick }) => (
+  const DropdownLink = ({ item, onClick }) => (
     <Link
       to={item.to}
       onClick={onClick}
-      className="group/it flex h-full items-center gap-2.5 rounded-lg border border-line bg-white px-2.5 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-forest-300 hover:shadow-md"
+      className="group block overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
     >
-      <span className="grid h-7 w-7 flex-none place-items-center rounded-md bg-gradient-to-br from-forest-500 to-lime-500 text-white shadow-sm">
-        <Icon name={item.icon || "leaf"} className="h-4 w-4" />
-      </span>
-      <span className="min-w-0 flex-1">
-        <span className="block font-head text-[0.82rem] font-semibold leading-tight text-forest-800 group-hover/it:text-forest-700">
-          {item.label}
+      <div className="flex items-start gap-3 rounded-[calc(1rem-1px)] bg-white px-4 py-4 text-sm font-medium text-forest-800">
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-sm font-semibold text-forest-900">
+            {item.label}
+          </span>
+          {item.desc && (
+            <span className="mt-0.5 block text-xs text-forest-500">{item.desc}</span>
+          )}
         </span>
-      </span>
+      </div>
+    </Link>
+  );
+
+  const MobileMenuItem = ({ item, onClick }) => (
+    <Link
+      to={item.to}
+      onClick={onClick}
+      className="block overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
+    >
+      <div className="rounded-[calc(1rem-1px)] bg-white px-4 py-4 text-sm font-medium text-forest-800">
+        {item.label}
+      </div>
     </Link>
   );
 
@@ -78,8 +92,8 @@ export default function Navbar() {
         scrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
-      {/* Top band (logo) — soft forest green, with a forest-green divider line below */}
-      <div className="border-b-2 border-forest-800 bg-forest-200">
+      {/* Top band (logo) — forest green top band with logo */}
+      <div className="border-b-2 border-forest-700 bg-forest-200">
       <div className="container-cc relative flex h-[72px] items-center justify-center">
         <button
           className="absolute left-0 grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
@@ -141,34 +155,66 @@ export default function Navbar() {
                 </button>
                 {menu === l.label &&
                   (() => {
-                    const widthClass = "w-[460px]";
+                    const widthClass = "w-[min(100vw-2rem,420px)]";
                     const alignRight = ["Projects Portfolio", "Agroforestry Solutions"].includes(l.label);
-                    const posClass = alignRight
-                      ? "right-0"
-                      : "left-1/2 -translate-x-1/2";
+                    const posClass = alignRight ? "right-0" : "left-1/2 -translate-x-1/2";
+                    const gid = `nav-${l.label.replace(/\s+/g, "-").toLowerCase().replace(/[^a-z0-9\-]/g, "")}`;
+                    const fid = `nf-${gid}`;
+                    const palettes = {
+                      "our services": ["#E8FFFA", "#CFF7D8"],
+                      "carbon projects": ["#F0FBFF", "#DFF6FB"],
+                      "forestry & landscaping": ["#F2FAF2", "#DFF1DD"],
+                      "agroforestry solutions": ["#FFF8E8", "#FFEDBF"],
+                      "projects portfolio": ["#FFF2F8", "#F9E8FB"],
+                    };
+                    const stops = palettes[l.label.toLowerCase()] || ["#F6FFED", "#D1FAE5"];
+                    const shapeMap = {
+                      "our services": "M50 0 C72 0 94 12 96 34 C98 56 86 74 68 84 C50 94 32 90 14 74 C2 60 0 36 10 18 C22 6 36 0 50 0 Z",
+                      "carbon projects": "M50 0 C70 2 92 14 92 36 C90 58 76 72 60 82 C44 90 28 88 12 70 C6 56 6 36 16 18 C28 6 38 0 50 0 Z",
+                      "forestry & landscaping": "M50 0 C68 0 90 10 95 30 C100 50 88 70 70 80 C52 90 36 86 20 70 C6 54 4 36 12 18 C24 6 36 0 50 0 Z",
+                      "agroforestry solutions": "M50 0 C66 4 88 12 96 30 C104 50 94 68 76 80 C58 92 40 88 22 72 C6 56 4 36 12 18 C24 6 36 0 50 0 Z",
+                      "projects portfolio": "M50 0 C64 0 84 8 96 28 C108 48 98 66 80 78 C62 90 44 86 26 72 C10 58 4 36 12 18 C24 6 36 0 50 0 Z",
+                    };
+                    const shape = shapeMap[l.label.toLowerCase()] || "M50 0 C68 0 90 10 95 30 C100 50 85 70 65 80 C45 90 30 85 12 70 C-2 54 0 30 10 15 C20 2 32 0 50 0 Z";
                     return (
-                      <div
-                        className={`absolute top-[calc(100%-2px)] z-50 max-w-[calc(100vw-2rem)] pt-3 ${posClass} ${widthClass}`}
-                      >
+                      <div className={`absolute top-[calc(100%-2px)] z-50 max-w-[calc(100vw-2rem)] pt-3 ${posClass} ${widthClass}`}>
                         <div className="relative overflow-hidden rounded-2xl border border-line bg-white shadow-xl animate-dropIn">
-                          <span className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-forest-600 via-lime-400 to-lime-300" />
-                          <div className="flex items-center justify-between gap-4 px-5 pb-2 pt-5">
-                            <span className="font-head text-[0.82rem] font-bold uppercase tracking-wide text-forest-700">
+                          <span className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-forest-600 via-lime-400 to-lime-200" />
+                          <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden rounded-2xl">
+                            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
+                              <defs>
+                                <linearGradient id={gid} x1="0%" x2="100%">
+                                  <stop offset="0%" stopColor={stops[0]} stopOpacity="0.98" />
+                                  <stop offset="100%" stopColor={stops[1]} stopOpacity="0.95" />
+                                </linearGradient>
+                                <filter id={fid} x="-20%" y="-20%" width="140%" height="140%">
+                                  <feGaussianBlur stdDeviation="6" result="b" />
+                                  <feOffset dx="0" dy="6" in="b" result="off" />
+                                  <feComposite in="off" in2="SourceGraphic" operator="over" result="comp" />
+                                  <feMerge>
+                                    <feMergeNode in="comp" />
+                                    <feMergeNode in="SourceGraphic" />
+                                  </feMerge>
+                                </filter>
+                              </defs>
+                              <path fill={`url(#${gid})`} filter={`url(#${fid})`} d={shape} transform="translate(0,6) scale(1.05)" />
+                              <path d={shape} fill="none" stroke="#0b3b1e" strokeOpacity="0.06" strokeWidth="1" transform="translate(0,6) scale(1.05)" />
+                            </svg>
+                          </div>
+                          <div className="flex items-center justify-between gap-3 px-3 pb-2 pt-4">
+                            <span className="font-head text-[0.78rem] font-bold uppercase tracking-wide text-forest-700">
                               {l.label}
                             </span>
-                            <Link
-                              to={l.to}
-                              onClick={closeAll}
-                              className="group/va flex-none inline-flex items-center gap-1 font-head text-[0.74rem] font-bold uppercase tracking-wide text-forest-600 transition-colors hover:text-forest-800"
-                            >
-                              View all
-                              <Icon name="arrow" className="h-3.5 w-3.5 transition-transform group-hover/va:translate-x-0.5" />
-                            </Link>
+                            <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-forest-600">
+                              <span className="inline-flex h-8 w-8 items-center justify-center rounded-2xl bg-forest-100 text-forest-700">
+                                <Icon name={l.icon || "leaf"} className="h-4 w-4" />
+                              </span>
+                            </div>
                           </div>
-                          <ul className="relative grid max-h-[70vh] grid-cols-2 gap-1.5 overflow-y-auto p-3 pt-2">
+                          <ul className="space-y-2 p-3">
                             {l.children.map((c) => (
-                              <li key={c.to}>
-                                <MenuItem item={c} onClick={closeAll} />
+                              <li key={c.to} className="min-w-0">
+                                <DropdownLink item={c} onClick={closeAll} />
                               </li>
                             ))}
                           </ul>
@@ -207,7 +253,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => setMenu((m) => (m === l.label ? null : l.label))}
-                  className="flex w-full items-center justify-between rounded-xl px-3.5 py-3 font-head text-[0.95rem] font-semibold text-forest-800 hover:bg-mist"
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 font-head text-[0.92rem] font-semibold text-forest-800 hover:bg-mist"
                 >
                   {l.label}
                   <Icon
@@ -218,10 +264,10 @@ export default function Navbar() {
                   />
                 </button>
                 {menu === l.label && (
-                  <ul className="mb-1 ml-2 space-y-0.5 border-l-2 border-lime-200 pl-2 pt-0.5">
+                  <ul className="mb-1 ml-2 space-y-1 border-l-2 border-lime-200 pl-2 pt-1">
                     {l.children.map((c) => (
                       <li key={c.to}>
-                        <MenuItem item={c} onClick={closeAll} />
+                        <MobileMenuItem item={c} onClick={closeAll} />
                       </li>
                     ))}
                   </ul>
