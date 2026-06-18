@@ -136,7 +136,7 @@ export default function Home() {
       </section>
 
       {/* Our Approach */}
-      <section id="approach" className="section bg-emerald-50">
+      <section id="approach" className="section bg-lime-100">
         <div className="container-cc">
           <SectionHeading 
             eyebrow="Our Approach" 
@@ -165,7 +165,7 @@ export default function Home() {
       </section>
 
       {/* Standards */}
-      <section id="standards" className="section bg-lime-100">
+      <section id="standards" className="section bg-lime-200">
         <div className="container-cc">
           <SectionHeading 
             eyebrow="Standards & Methodologies" 
