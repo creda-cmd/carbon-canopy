@@ -78,10 +78,10 @@ export default function Home() {
                   Our Services
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold text-forest-900">
-                  Explore solutions built for restoration and carbon value.
+                  Restoring Landscapes, Creating Carbon Value
                 </h2>
                 <p className="mt-4 text-sm leading-6 text-forest-600">
-                  Browse our service offerings, then reach out to discuss a custom project plan or next steps.
+                  Explore solutions built for restoration, carbon development, and climate-smart consulting.
                 </p>
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
                   <Link to="/services" className="btn btn-primary w-full sm:w-auto">
