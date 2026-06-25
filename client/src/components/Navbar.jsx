@@ -9,7 +9,8 @@ const basePath = (s) => s.split("#")[0];
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [menu, setMenu] = useState(null); // open dropdown label
+  const [menu, setMenu] = useState(null);       // desktop dropdown
+  const [mobileMenu, setMobileMenu] = useState(null); // mobile submenu
   const { pathname } = useLocation();
   const dropRef = useRef(null);
 
@@ -36,6 +37,7 @@ export default function Navbar() {
 
   const closeAll = () => {
     setMenu(null);
+    setMobileMenu(null);
     setOpen(false);
   };
 
@@ -252,18 +254,18 @@ export default function Navbar() {
               <li key={l.label}>
                 <button
                   type="button"
-                  onClick={() => setMenu((m) => (m === l.label ? null : l.label))}
+                  onClick={() => setMobileMenu((m) => (m === l.label ? null : l.label))}
                   className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 font-head text-[0.92rem] font-semibold text-forest-800 hover:bg-mist"
                 >
                   {l.label}
                   <Icon
                     name="chevron"
                     className={`h-4 w-4 text-forest-500 transition-transform duration-200 ${
-                      menu === l.label ? "rotate-180" : ""
+                      mobileMenu === l.label ? "rotate-180" : ""
                     }`}
                   />
                 </button>
-                {menu === l.label && (
+                {mobileMenu === l.label && (
                   <ul className="mb-1 ml-2 space-y-1 border-l-2 border-lime-200 pl-2 pt-1">
                     {l.children.map((c) => (
                       <li key={c.to}>
