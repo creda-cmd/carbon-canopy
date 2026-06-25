@@ -8,5 +8,9 @@ export default function CarbonProjects() {
     "Carbon project development services: feasibility, baselines, PDD, MRV, validation & verification, registration (Verra, Gold Standard, ART/TREES, Plan Vivo), GIS, and carbon finance advisory."
   );
 
-  return <CategoryServices groups={carbonGroups} />;
+  return (
+    <div className="bg-forest-100">
+      <CategoryServices groups={carbonGroups} />
+    </div>
+  );
 }

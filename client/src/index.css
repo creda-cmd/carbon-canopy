@@ -102,6 +102,22 @@
   }
 }
 
+@keyframes kenburns-1 {
+  0%   { transform: scale(1.15) translateY(-8%); }
+  100% { transform: scale(1.15) translateY(8%); }
+}
+@keyframes kenburns-2 {
+  0%   { transform: scale(1.15) translateY(-8%); }
+  100% { transform: scale(1.15) translateY(8%); }
+}
+@keyframes kenburns-3 {
+  0%   { transform: scale(1.15) translateY(-8%); }
+  100% { transform: scale(1.15) translateY(8%); }
+}
+.hero-kb-1 { animation: kenburns-1 9s ease-in-out infinite alternate; }
+.hero-kb-2 { animation: kenburns-2 9s ease-in-out infinite alternate; }
+.hero-kb-3 { animation: kenburns-3 9s ease-in-out infinite alternate; }
+
 @layer utilities {
   /* Two-tone green header bar (lime green -> emerald green). */
   .header-gradient {

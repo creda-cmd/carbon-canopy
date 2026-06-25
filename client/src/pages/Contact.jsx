@@ -46,7 +46,7 @@ export default function Contact() {
 
   return (
     <>
-      <section className="section">
+      <section className="section bg-forest-100">
         <div className="container-cc grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Info */}
           <Reveal>
@@ -83,18 +83,19 @@ export default function Contact() {
                 </div>
               </div>
               <div className="flex items-start gap-4 py-4">
-                <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-forest-50 text-forest-700">
+                <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-[#25D366]/10 text-[#25D366]">
                   <Icon name="whatsapp" className="h-6 w-6" />
                 </span>
                 <div>
                   <h4 className="m-0 text-base">WhatsApp</h4>
                   <a
-                    href={`https://wa.me/${company.phones[0].replace(/^0/, "254")}`}
+                    href={`https://wa.me/${company.phones[0].replace(/^0/, "254")}?text=${encodeURIComponent("Hello CarbonCanopy Solutions, I'd like to enquire about your services.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted hover:text-forest-700"
+                    className="mt-1 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
                   >
-                    Chat with us
+                    <Icon name="whatsapp" className="h-4 w-4" />
+                    Chat on WhatsApp
                   </a>
                 </div>
               </div>
@@ -145,10 +146,13 @@ export default function Contact() {
                   <input
                     id="phone"
                     name="phone"
+                    type="tel"
+                    inputMode="numeric"
                     value={form.phone}
-                    onChange={update}
+                    onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value.replace(/\D/g, "") }))}
+                    required
                     className="field-input"
-                    placeholder="Optional"
+                    placeholder="e.g. 0712345678"
                   />
                 </div>
                 <div>

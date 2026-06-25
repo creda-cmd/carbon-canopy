@@ -8,5 +8,9 @@ export default function Portfolio() {
     "CarbonCanopy Solutions delivers end-to-end project development, management, MERL, safeguards, GIS, and fundraising support across carbon, forestry, agroforestry, and environmental sectors."
   );
 
-  return <CategoryServices groups={portfolioGroups} />;
+  return (
+    <div className="bg-forest-100">
+      <CategoryServices groups={portfolioGroups} />
+    </div>
+  );
 }

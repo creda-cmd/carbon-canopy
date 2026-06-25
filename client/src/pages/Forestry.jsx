@@ -8,5 +8,9 @@ export default function Forestry() {
     "Forestry, landscaping & nursery services: indigenous seed & seedling supply, nursery establishment, reforestation & restoration, landscaping, ornamentals, and environmental conservation."
   );
 
-  return <CategoryServices groups={forestryGroups} />;
+  return (
+    <div className="bg-forest-100">
+      <CategoryServices groups={forestryGroups} />
+    </div>
+  );
 }

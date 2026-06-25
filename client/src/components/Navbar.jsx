@@ -41,7 +41,7 @@ export default function Navbar() {
 
   const topBase =
     "group relative flex items-center gap-1 whitespace-nowrap px-3 py-2.5 font-head text-[0.88rem] font-semibold tracking-wide transition-colors";
-  const topText = (active) => (active ? "text-forest-900" : "text-forest-800 hover:text-forest-900");
+  const topText = (active) => (active ? "rounded-lg bg-white/30 text-forest-900 shadow-sm" : "text-forest-800 hover:text-forest-900 hover:bg-white/20 rounded-lg");
 
   const Underline = ({ active }) => (
     <span
@@ -93,7 +93,7 @@ export default function Navbar() {
       }`}
     >
       {/* Top band (logo) — forest green top band with logo */}
-      <div className="border-b-2 border-forest-700 bg-forest-200">
+      <div className="border-b-2 border-forest-700 bg-forest-100">
       <div className="container-cc relative flex h-[72px] items-center justify-center">
         <button
           className="absolute left-0 grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
@@ -121,7 +121,7 @@ export default function Navbar() {
           <img src="/img/logo.png" alt="CarbonCanopy Solutions" className="h-12 w-auto sm:h-14" />
         </Link>
 
-        <div className="absolute right-0">
+        <div className="absolute right-0 flex items-center gap-3">
           <Search />
         </div>
       </div>
@@ -141,7 +141,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => setMenu((m) => (m === l.label ? null : l.label))}
-                  className={`${topBase} ${topText(isGroupActive(l))}`}
+                  className={`${topBase} ${topText(isGroupActive(l) || menu === l.label)}`}
                   aria-expanded={menu === l.label}
                 >
                   {l.label}

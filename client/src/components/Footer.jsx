@@ -34,13 +34,22 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-4 text-white">Expertise</h4>
-          <ul className="space-y-2.5 text-sm">
-            <li><Link to="/carbon-projects" className="hover:text-white">Carbon Projects</Link></li>
-            <li><Link to="/forestry-landscaping" className="hover:text-white">Forestry & Nursery</Link></li>
-            <li><Link to="/agroforestry" className="hover:text-white">Agroforestry Solutions</Link></li>
-            <li><Link to="/portfolio" className="hover:text-white">Project Portfolio</Link></li>
-            <li><Link to="/services" className="hover:text-white">All Services</Link></li>
+          <h4 className="mb-4 text-white">Working Hours</h4>
+          <ul className="space-y-3 text-sm">
+            <li className="flex items-start gap-2.5">
+              <Icon name="clock" className="mt-0.5 h-4 w-4 flex-none text-sage-300" />
+              <div>
+                <p className="font-semibold text-forest-100">Monday – Friday</p>
+                <p className="text-forest-100/70">9:00 AM – 5:00 PM</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2.5">
+              <Icon name="clock" className="mt-0.5 h-4 w-4 flex-none text-sage-300" />
+              <div>
+                <p className="font-semibold text-forest-100">Saturday</p>
+                <p className="text-forest-100/70">By Appointment Only</p>
+              </div>
+            </li>
           </ul>
         </div>
 
