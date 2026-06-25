@@ -5,6 +5,7 @@ import Icon from "../components/Icon";
 import { company, serviceCategories } from "../data/site";
 
 const initial = { name: "", email: "", phone: "", service: "", message: "" };
+const API_BASE = import.meta.env.VITE_API_URL || "";
 
 export default function Contact() {
   useSeo(
@@ -21,7 +22,7 @@ export default function Contact() {
     e.preventDefault();
     setStatus({ state: "loading", msg: "" });
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
