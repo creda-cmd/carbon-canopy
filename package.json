@@ -5,10 +5,11 @@
   "description": "CarbonCanopy Solutions — carbon, forestry & agroforestry consultancy website (React + Node.js + Tailwind CSS).",
   "scripts": {
     "install:all": "npm install && npm --prefix client install && npm --prefix server install",
+    "postinstall": "npm --prefix client install",
     "dev": "concurrently -n server,client,chrome -c green,cyan,blue \"npm --prefix server run dev\" \"npm --prefix client run dev:client\" \"cmd /c start chrome http://127.0.0.1:5173\"",
     "dev:client": "npm --prefix client run dev -- --open",
     "dev:server": "npm --prefix server run dev",
-    "build": "npm --prefix client run build",
+    "build": "npm --prefix client install && npm --prefix client run build",
     "start": "npm --prefix server run start",
     "lint": "npm --prefix client run lint"
   },
