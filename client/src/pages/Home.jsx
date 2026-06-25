@@ -150,7 +150,7 @@ export default function Home() {
                 <div className="absolute -left-4 -top-4 h-full w-full rounded-3xl border-2 border-lime-300/60" />
                 <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                   <img
-                    src="/canopy2.jpg"
+                    src="/WhatsApp Image 2026-06-22 at 2.58.04 PM.jpeg"
                     alt="Growing seedlings — CarbonCanopy Solutions"
                     className="h-[420px] w-full object-cover"
                   />
