@@ -36,6 +36,51 @@ export default function About() {
   return (
     <div>
 
+      {/* Who We Are */}
+      <section className="section bg-white">
+        <div className="container-cc">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+
+            {/* Image */}
+            <Reveal>
+              <div className="relative">
+                <div className="absolute -left-4 -top-4 h-full w-full rounded-3xl border-2 border-lime-300/60" />
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                  <img
+                    src="/img/transition-2.jpg"
+                    alt="Growing seedlings — CarbonCanopy Solutions"
+                    className="h-[420px] w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-900/40 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <span className="inline-block rounded-full bg-lime-400/90 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-forest-900 shadow">
+                      Est. Kenya
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Text */}
+            <Reveal delay={100}>
+              <p className="text-sm font-black uppercase tracking-[0.3em] text-lime-600">Who We Are</p>
+              <h2 className="mt-3 text-3xl font-black uppercase leading-tight text-forest-900 md:text-4xl">
+                Rooted in Nature.<br />
+                <span className="text-forest-600">Driven by Impact.</span>
+              </h2>
+              <div className="mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-forest-600 to-lime-400" />
+              <p className="mt-6 text-base leading-8 text-forest-700">
+                CarbonCanopy Solutions is an environmental consultancy specialising in carbon project development, forestry, agroforestry, and climate-smart land management. We bridge the gap between degraded landscapes and thriving ecosystems — turning idle land into measurable carbon value while uplifting the communities that depend on it.
+              </p>
+              <p className="mt-4 text-base leading-8 text-forest-700">
+                From smallholder farmers to large landowners, government bodies to private investors, we work across the full project lifecycle — designing, registering, implementing, and verifying carbon and forestry projects against internationally recognised standards including Verra/VCS, Gold Standard, Plan Vivo, and ART/TREES.
+              </p>
+            </Reveal>
+
+          </div>
+        </div>
+      </section>
+
       {/* Vision & Mission */}
       <section className="section bg-forest-100">
         <div className="container-cc">
