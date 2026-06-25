@@ -68,7 +68,7 @@
   }
 
   .card {
-    @apply h-full rounded-xl border border-line bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sage-300 hover:shadow-md;
+    @apply h-full rounded-lg bg-forest-50 p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md;
   }
 
   .chip {
@@ -76,7 +76,7 @@
   }
 
   .field-input {
-    @apply w-full rounded-[10px] border border-line bg-mist px-4 py-3 font-body text-[0.96rem] text-ink transition-all duration-300 focus:border-forest-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-forest-400/15;
+    @apply w-full rounded-[10px] border border-forest-200 bg-forest-50 px-4 py-3 font-body text-[0.96rem] text-forest-700 transition-all duration-300 focus:border-forest-400 focus:bg-forest-50 focus:outline-none focus:ring-4 focus:ring-forest-400/15;
   }
 
   .leaf-bullet {

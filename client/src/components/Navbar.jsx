@@ -58,11 +58,11 @@ export default function Navbar() {
     <Link
       to={item.to}
       onClick={onClick}
-      className="group block overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
+      className="group block overflow-hidden rounded-lg bg-forest-50 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
     >
-      <div className="flex items-start gap-3 rounded-[calc(1rem-1px)] bg-white px-4 py-4 text-sm font-medium text-forest-800">
+      <div className="flex items-start gap-3 px-4 py-3 text-sm font-medium text-forest-500">
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-sm font-semibold text-forest-900">
+          <span className="block truncate text-sm font-semibold text-forest-500">
             {item.label}
           </span>
           {item.desc && (
@@ -77,9 +77,9 @@ export default function Navbar() {
     <Link
       to={item.to}
       onClick={onClick}
-      className="block overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-forest-600 via-lime-400 to-lime-200 p-[1px] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
+      className="block overflow-hidden rounded-lg bg-forest-50 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
     >
-      <div className="rounded-[calc(1rem-1px)] bg-white px-4 py-4 text-sm font-medium text-forest-800">
+      <div className="px-4 py-3 text-sm font-medium text-forest-500">
         {item.label}
       </div>
     </Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
       }`}
     >
       {/* Top band (logo) — forest green top band with logo */}
-      <div className="border-b-2 border-forest-700 bg-forest-100">
+      <div className="border-b-2 border-forest-200 bg-white">
       <div className="container-cc relative flex h-[72px] items-center justify-center">
         <button
           className="absolute left-0 grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
@@ -180,7 +180,7 @@ export default function Navbar() {
                     const shape = shapeMap[l.label.toLowerCase()] || "M50 0 C68 0 90 10 95 30 C100 50 85 70 65 80 C45 90 30 85 12 70 C-2 54 0 30 10 15 C20 2 32 0 50 0 Z";
                     return (
                       <div className={`absolute top-[calc(100%-2px)] z-50 max-w-[calc(100vw-2rem)] pt-3 ${posClass} ${widthClass}`}>
-                        <div className="relative overflow-hidden rounded-2xl border border-line bg-white shadow-xl animate-dropIn">
+                        <div className="relative overflow-hidden rounded-xl bg-forest-50 shadow-lg animate-dropIn">
                           <span className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-forest-600 via-lime-400 to-lime-200" />
                           <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden rounded-2xl">
                             <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
@@ -204,7 +204,7 @@ export default function Navbar() {
                             </svg>
                           </div>
                           <div className="flex items-center justify-between gap-3 px-3 pb-2 pt-4">
-                            <span className="font-head text-[0.78rem] font-bold uppercase tracking-wide text-forest-700">
+                            <span className="font-head text-[0.78rem] font-bold uppercase tracking-wide text-forest-500">
                               {l.label}
                             </span>
                             <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-forest-600">

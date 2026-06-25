@@ -108,7 +108,7 @@ export default function Contact() {
             <form
               id="contact-form"
               onSubmit={submit}
-              className="rounded-xl border border-line bg-white p-8 shadow-md"
+              className="rounded-xl bg-forest-100 p-8"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>

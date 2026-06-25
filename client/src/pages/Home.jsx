@@ -141,131 +141,97 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Who We Are */}
+      <section className="section bg-forest-50">
+        <div className="container-cc">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <Reveal>
+              <div className="relative">
+                <div className="absolute -left-4 -top-4 h-full w-full rounded-3xl border-2 border-lime-300/60" />
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                  <img
+                    src="/canopy2.jpg"
+                    alt="Growing seedlings — CarbonCanopy Solutions"
+                    className="h-[420px] w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-900/40 to-transparent" />
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <p className="text-sm font-black uppercase tracking-[0.3em] text-lime-600">Who We Are</p>
+              <h2 className="mt-3 text-3xl font-black uppercase leading-tight text-forest-900 md:text-4xl">
+                Rooted in Nature.<br />
+                <span className="text-forest-600">Driven by Impact.</span>
+              </h2>
+              <div className="mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-forest-600 to-lime-400" />
+              <p className="mt-6 text-base leading-8 text-forest-500">
+                CarbonCanopy Solutions specializes in delivering projects that generate measurable environmental, social, and economic impact while supporting climate resilience, sustainable livelihoods, and ecosystem restoration.
+              </p>
+              <p className="mt-4 text-base leading-8 text-forest-500">
+                Based in Kenya, we work across the full project lifecycle — from feasibility and design through implementation, monitoring, verification, and scaling — serving communities, landowners, investors, and government bodies across the region.
+              </p>
+              <p className="mt-4 text-base leading-8 text-forest-500">
+                Our work spans carbon project development, forestry and landscaping, agroforestry, and project portfolio management, all grounded in internationally recognised standards including Verra VCS, Gold Standard, Plan Vivo, and ART/TREES.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* Our Approach & Standards */}
       <section id="approach" className="section bg-forest-100">
         <div className="container-cc">
 
-          {/* Approach heading */}
-          <Reveal className="mb-12 text-center">
-            <h2 className="text-3xl font-bold uppercase text-forest-900 md:text-4xl">Our Approach</h2>
-            <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-forest-600 to-lime-400" />
-          </Reveal>
+          {/* Approach image + Standards side by side */}
+          <div className="grid items-start gap-10 lg:grid-cols-2">
 
-          {/* Circular layout */}
-          <Reveal>
-            {/* Desktop wheel */}
-            {(() => {
-              const W = 760, H = 760, CX = 380, CY = 380, R = 270, nodeR = 72;
-              const steps = approachSteps;
-              const pts = steps.map((_, i) => {
-                const angle = (i / steps.length) * 2 * Math.PI - Math.PI / 2;
-                return { x: CX + R * Math.cos(angle), y: CY + R * Math.sin(angle), angle };
-              });
-              return (
-                <div className="relative mx-auto hidden md:block" style={{ width: W, height: H }}>
-                  {/* SVG: orbit ring + spokes */}
-                  <svg className="absolute inset-0 pointer-events-none" width={W} height={H}>
-                    <circle cx={CX} cy={CY} r={R} fill="none" stroke="#8fd0a4" strokeWidth="2" strokeDasharray="6 5" opacity="0.5" />
-                    {pts.map((p, i) => (
-                      <line key={i}
-                        x1={CX + 68 * Math.cos(p.angle)} y1={CY + 68 * Math.sin(p.angle)}
-                        x2={p.x - nodeR * Math.cos(p.angle)} y2={p.y - nodeR * Math.sin(p.angle)}
-                        stroke="#2e9e54" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.45"
-                      />
-                    ))}
-                  </svg>
+            {/* Left: Our Approach heading + image */}
+            <Reveal>
+              <h2 className="mb-3 text-3xl font-bold uppercase text-forest-900 md:text-4xl">Our Approach</h2>
+              <div className="mb-6 h-1 w-20 rounded-full bg-gradient-to-r from-forest-600 to-lime-400" />
+              <div className="overflow-hidden rounded-xl bg-forest-100 p-4">
+                <img
+                  src="/ChatGPT Image Jun 25, 2026, 11_17_55 PM.png"
+                  alt="Our 7-step approach: Assess, Design, Implement, Monitor, Verify, Report, Scale"
+                  className="w-full object-contain mix-blend-multiply"
+                />
+              </div>
+            </Reveal>
 
-                  {/* Centre hub — logo */}
-                  <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 flex h-[136px] w-[136px] items-center justify-center rounded-full bg-white shadow-2xl ring-[5px] ring-forest-300">
-                    <img src="/img/logo.svg" alt="CarbonCanopy" className="h-24 w-24 object-contain" />
-                  </div>
-
-                  {/* Step nodes */}
-                  {steps.map((item, i) => {
-                    const p = pts[i];
-                    return (
-                      <div
-                        key={item.step}
-                        className="group absolute z-10 transition-all duration-300 hover:scale-110 hover:z-30"
-                        style={{ left: p.x - nodeR, top: p.y - nodeR, width: nodeR * 2, height: nodeR * 2 }}
-                      >
-                        {/* Gradient outer ring */}
-                        <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${item.accent} shadow-xl`} />
-                        {/* White inner circle */}
-                        <div className="absolute inset-[5px] rounded-full bg-white flex flex-col items-center justify-center gap-0.5 px-2">
-                          {/* Step number */}
-                          <span className={`flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br ${item.accent} text-[9px] font-black text-white shadow`}>
-                            {i + 1}
-                          </span>
-                          {/* Icon */}
-                          <div className={`flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${item.accent}`}>
-                            <Icon name={item.icon} className="h-4 w-4 text-white" strokeWidth={2} />
-                          </div>
-                          {/* Title */}
-                          <p className="text-center text-[11px] font-black leading-tight text-forest-900">{item.step}</p>
-                          {/* Description */}
-                          <p className="text-center text-[9px] font-semibold leading-[1.3] text-forest-700 px-1">{item.desc}</p>
-                        </div>
+            {/* Right: Standards heading + grid */}
+            <Reveal delay={80}>
+              <h2 className="mb-3 text-3xl font-bold uppercase text-forest-900 md:text-4xl">Standards</h2>
+              <div className="mb-6 h-1 w-20 rounded-full bg-gradient-to-r from-forest-600 to-lime-400" />
+              <div className="grid grid-cols-2 gap-3">
+                {carbonStandards.map((s, i) => {
+                  const stdAccents = [
+                    'from-forest-600 to-lime-400',
+                    'from-forest-700 to-forest-500',
+                    'from-lime-500 to-forest-600',
+                    'from-forest-500 to-lime-500',
+                    'from-forest-800 to-forest-600',
+                    'from-lime-400 to-forest-700',
+                    'from-forest-600 to-forest-800',
+                    'from-lime-300 to-forest-500',
+                  ];
+                  const acc = stdAccents[i % stdAccents.length];
+                  return (
+                    <div key={s} className="group relative overflow-hidden rounded-lg bg-forest-50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                      <div className={`h-1 w-full bg-gradient-to-r ${acc}`} />
+                      <div className="flex items-center gap-3 px-3 py-2">
+                        <span className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${acc} text-white shadow transition-transform duration-300 group-hover:scale-110`}>
+                          <Icon name="badge" className="h-3.5 w-3.5" strokeWidth={1.5} />
+                        </span>
+                        <span className="text-xs font-bold leading-tight text-forest-500">{s}</span>
                       </div>
-                    );
-                  })}
-                </div>
-              );
-            })()}
-
-            {/* Mobile: stacked cards */}
-            <div className="md:hidden grid grid-cols-2 gap-3">
-              {approachSteps.map((item, i) => (
-                <div key={item.step} className="group relative flex flex-col items-center rounded-3xl bg-white p-4 shadow-md ring-2 ring-forest-100 transition-all hover:shadow-lg hover:ring-lime-300">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br ${item.accent} shadow-md`}>
-                    <Icon name={item.icon} className="h-5 w-5 text-white" strokeWidth={1.5} />
-                  </div>
-                  <span className="mt-1 text-[9px] font-black uppercase tracking-widest text-forest-400">Step {i + 1}</span>
-                  <h3 className="mt-0.5 text-center text-xs font-black text-forest-900">{item.step}</h3>
-                  <p className="mt-1 text-center text-[10px] leading-4 text-forest-500">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* Dividing line */}
-          <div className="mt-16 h-px w-full bg-gradient-to-r from-transparent via-forest-300 to-transparent" />
-
-          {/* Standards heading */}
-          <Reveal className="mb-10 mt-10 text-center">
-            <h2 className="text-3xl font-bold uppercase text-forest-900 md:text-4xl">Standards</h2>
-            <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-forest-600 to-lime-400" />
-          </Reveal>
-
-          {/* Standards grid */}
-          <Reveal>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-              {carbonStandards.map((s, i) => {
-                const stdAccents = [
-                  'from-forest-600 to-lime-400',
-                  'from-forest-700 to-forest-500',
-                  'from-lime-500 to-forest-600',
-                  'from-forest-500 to-lime-500',
-                  'from-forest-800 to-forest-600',
-                  'from-lime-400 to-forest-700',
-                  'from-forest-600 to-forest-800',
-                  'from-lime-300 to-forest-500',
-                ];
-                const acc = stdAccents[i % stdAccents.length];
-                return (
-                  <div key={s} className="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-forest-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-lime-300">
-                    <div className={`h-1 w-full bg-gradient-to-r ${acc}`} />
-                    <div className="flex items-center gap-3 px-4 py-3">
-                      <span className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${acc} text-white shadow transition-transform duration-300 group-hover:scale-110`}>
-                        <Icon name="badge" className="h-4 w-4" strokeWidth={1.5} />
-                      </span>
-                      <span className="text-xs font-bold leading-tight text-forest-900">{s}</span>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          </Reveal>
+                  );
+                })}
+              </div>
+            </Reveal>
+
+          </div>
 
         </div>
       </section>
