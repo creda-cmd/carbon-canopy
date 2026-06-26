@@ -47,8 +47,8 @@ export default function CategoryServices({ groups }) {
               >
                 <div className="flex items-start gap-3 px-4 py-3">
                   <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-semibold text-forest-500 group-hover:text-forest-400">{g.title}</span>
-                    <span className="mt-0.5 block text-xs text-forest-400">{g.items.length} services</span>
+                    <span className="block text-sm font-semibold text-forest-700 group-hover:text-forest-600">{g.title}</span>
+                    <span className="mt-0.5 block text-xs text-forest-600">{g.items.length} services</span>
                   </span>
                 </div>
               </Link>
@@ -73,7 +73,7 @@ export default function CategoryServices({ groups }) {
             <li key={item} className="relative">
               <div className="group block overflow-hidden rounded-lg bg-forest-50 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
                 <div className="px-4 py-3">
-                  <p className="text-sm font-medium text-forest-500">{item}</p>
+                  <p className="text-sm font-medium text-forest-700">{item}</p>
                 </div>
               </div>
             </li>

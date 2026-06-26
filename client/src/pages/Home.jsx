@@ -150,7 +150,7 @@ export default function Home() {
                 <div className="absolute -left-4 -top-4 h-full w-full rounded-3xl border-2 border-lime-300/60" />
                 <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                   <img
-                    src="/WhatsApp Image 2026-06-22 at 2.58.04 PM.jpeg"
+                    src="/canopy3.jpg"
                     alt="Growing seedlings — CarbonCanopy Solutions"
                     className="h-[420px] w-full object-cover"
                   />
@@ -164,12 +164,12 @@ export default function Home() {
                 Rooted in Nature.<br />
                 <span className="text-forest-600">Driven by Impact.</span>
               </h2>
-              <div className="mt-4 h-1 w-20 rounded-full bg-gradient-to-r from-forest-600 to-lime-400" />
+              <div className="mt-4 h-1 w-20 rounded-full bg-forest-600" />
               <p className="mt-6 text-base leading-8 text-forest-500">
                 CarbonCanopy Solutions specializes in delivering projects that generate measurable environmental, social, and economic impact while supporting climate resilience, sustainable livelihoods, and ecosystem restoration.
               </p>
               <p className="mt-4 text-base leading-8 text-forest-500">
-                Based in Kenya, we work across the full project lifecycle — from feasibility and design through implementation, monitoring, verification, and scaling — serving communities, landowners, investors, and government bodies across the region.
+                Based in Kenya, we work across the full project lifecycle, from feasibility and design through implementation, monitoring, verification, and scaling, serving communities, landowners, investors, and government bodies across the region.
               </p>
               <p className="mt-4 text-base leading-8 text-forest-500">
                 Our work spans carbon project development, forestry and landscaping, agroforestry, and project portfolio management, all grounded in internationally recognised standards including Verra VCS, Gold Standard, Plan Vivo, and ART/TREES.
@@ -189,7 +189,7 @@ export default function Home() {
             {/* Left: Our Approach heading + image */}
             <Reveal>
               <h2 className="mb-3 text-3xl font-bold uppercase text-forest-900 md:text-4xl">Our Approach</h2>
-              <div className="mb-6 h-1 w-20 rounded-full bg-gradient-to-r from-forest-600 to-lime-400" />
+              <div className="mb-6 h-1 w-20 rounded-full bg-forest-600" />
               <div className="overflow-hidden rounded-xl bg-forest-100 p-4">
                 <img
                   src="/ChatGPT Image Jun 25, 2026, 11_17_55 PM.png"
@@ -202,32 +202,17 @@ export default function Home() {
             {/* Right: Standards heading + grid */}
             <Reveal delay={80}>
               <h2 className="mb-3 text-3xl font-bold uppercase text-forest-900 md:text-4xl">Standards</h2>
-              <div className="mb-6 h-1 w-20 rounded-full bg-gradient-to-r from-forest-600 to-lime-400" />
+              <div className="mb-6 h-1 w-20 rounded-full bg-forest-600" />
               <div className="grid grid-cols-2 gap-3">
-                {carbonStandards.map((s, i) => {
-                  const stdAccents = [
-                    'from-forest-600 to-lime-400',
-                    'from-forest-700 to-forest-500',
-                    'from-lime-500 to-forest-600',
-                    'from-forest-500 to-lime-500',
-                    'from-forest-800 to-forest-600',
-                    'from-lime-400 to-forest-700',
-                    'from-forest-600 to-forest-800',
-                    'from-lime-300 to-forest-500',
-                  ];
-                  const acc = stdAccents[i % stdAccents.length];
-                  return (
+                {carbonStandards.map((s) => (
                     <div key={s} className="group relative overflow-hidden rounded-lg bg-forest-50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                      <div className={`h-1 w-full bg-gradient-to-r ${acc}`} />
+                      <div className="h-1 w-full bg-forest-600" />
                       <div className="flex items-center gap-3 px-3 py-2">
-                        <span className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${acc} text-white shadow transition-transform duration-300 group-hover:scale-110`}>
-                          <Icon name="badge" className="h-3.5 w-3.5" strokeWidth={1.5} />
-                        </span>
-                        <span className="text-xs font-bold leading-tight text-forest-500">{s}</span>
+                        <Icon name="badge" className="h-4 w-4 flex-shrink-0 text-forest-600" strokeWidth={1.5} />
+                        <span className="text-xs font-bold leading-tight text-forest-700">{s}</span>
                       </div>
                     </div>
-                  );
-                })}
+                ))}
               </div>
             </Reveal>
 
@@ -241,7 +226,7 @@ export default function Home() {
         <div className="container-cc">
           <Reveal className="mb-10 text-center">
             <h2 className="text-3xl font-bold uppercase text-lime-400">Projects Gallery</h2>
-            <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-lime-400 to-emerald-400" />
+            <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-lime-400" />
           </Reveal>
 
           <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

@@ -60,13 +60,13 @@ export default function Navbar() {
       onClick={onClick}
       className="group block overflow-hidden rounded-lg bg-forest-50 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
     >
-      <div className="flex items-start gap-3 px-4 py-3 text-sm font-medium text-forest-500">
+      <div className="flex items-start gap-3 px-4 py-3 text-sm font-medium text-forest-700">
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-sm font-semibold text-forest-500">
+          <span className="block truncate text-sm font-semibold text-forest-700">
             {item.label}
           </span>
           {item.desc && (
-            <span className="mt-0.5 block text-xs text-forest-500">{item.desc}</span>
+            <span className="mt-0.5 block text-xs text-forest-600">{item.desc}</span>
           )}
         </span>
       </div>
@@ -79,7 +79,7 @@ export default function Navbar() {
       onClick={onClick}
       className="block overflow-hidden rounded-lg bg-forest-50 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
     >
-      <div className="px-4 py-3 text-sm font-medium text-forest-500">
+      <div className="px-4 py-3 text-sm font-medium text-forest-700">
         {item.label}
       </div>
     </Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
       }`}
     >
       {/* Top band (logo) — forest green top band with logo */}
-      <div className="border-b-2 border-forest-200 bg-white">
+      <div className="border-b-2 border-forest-200 bg-forest-100">
       <div className="container-cc relative flex h-[72px] items-center justify-center">
         <button
           className="absolute left-0 grid h-11 w-11 place-items-center rounded-[10px] lg:hidden"
