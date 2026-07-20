@@ -24,6 +24,8 @@ const projectGallery = [
   { src: "/image14.jpeg", title: "Project 16" },
   { src: "/image18.jpg", title: "Project 17" },
   { src: "/image19.jpg", title: "Project 18" },
+  { src: "/image22.jpg", title: "Project 19" },
+  { src: "/image23.jpg", title: "Project 20" },
 ];
 
 const heroSlides = [
@@ -71,10 +73,10 @@ export default function Home() {
   ];
 
   const stats = [
-    { value: '10,000+', label: 'Trees Planted', icon: 'tree' },
-    { value: '250+', label: 'Projects Done', icon: 'folder' },
-    { value: '200+', label: 'Satisfied Clients', icon: 'users' },
-    { value: '8', label: 'Carbon Standards', icon: 'badge' },
+    { value: '2,500+', label: 'Trees Planted', icon: 'tree' },
+    { value: '5', label: 'Projects Done', icon: 'folder' },
+    { value: '5', label: 'Satisfied Clients', icon: 'users' },
+    { value: '5', label: 'Carbon Standards', icon: 'badge' },
   ];
 
   return (
