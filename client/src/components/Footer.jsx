@@ -75,6 +75,7 @@ export default function Footer() {
       <div className="container-cc mt-11">
         <div className="flex flex-col items-center justify-between gap-3 border-t border-white/10 py-6 text-sm text-forest-100/70 sm:flex-row">
           <p className="m-0">© {year} CarbonCanopy Solutions. All rights reserved.</p>
+          <p className="m-0">Built by: <a href="mailto:crda624@gmail.com" className="hover:text-white">crda624@gmail.com</a></p>
           <p className="m-0 italic text-sage-300">{company.motto}</p>
         </div>
       </div>
