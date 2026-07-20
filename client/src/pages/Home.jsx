@@ -6,8 +6,8 @@ import { useState, useEffect } from "react";
 import { carbonStandards } from "../data/site";
 
 const projectGallery = [
-  { src: "/WhatsApp Image 2026-06-22 at 3.00.06 PM.jpeg", title: "Project 1" },
-  { src: "/WhatsApp Image 2026-06-22 at 3.09.17 PM.jpeg", title: "Project 2" },
+  { src: "/image 15.jpeg", title: "Project 1" },
+  { src: "/c8101708-50df-48f7-8c63-1ad4660c23f2.jpg", title: "Project 2" },
   { src: "/WhatsApp Image 2026-06-22 at 3.09.18 PM.jpeg", title: "Project 3" },
   { src: "/WhatsApp Image 2026-06-22 at 3.09.27 PM.jpeg", title: "Project 4" },
   { src: "/WhatsApp Image 2026-06-22 at 3.10.22 PM.jpeg", title: "Project 5" },
@@ -16,12 +16,14 @@ const projectGallery = [
   { src: "/0f191e18-a4e6-4b02-b3d5-deb20833110a.jpg", title: "Project 8" },
   { src: "/25c07683-b084-4ff4-a4d3-a4ae9b5e62b1.jpg", title: "Project 9" },
   { src: "/3d41b028-8d1a-4a54-9671-44379561037d.jpg", title: "Project 10" },
-  { src: "/606928d3-d3b0-4ba9-bb05-7ae9d5316ef2.jpg", title: "Project 11" },
-  { src: "/b4335611-d517-4a35-a855-6892616c3d74.jpg", title: "Project 12" },
-  { src: "/c8101708-50df-48f7-8c63-1ad4660c23f2.jpg", title: "Project 13" },
-  { src: "/ee3f00e1-2816-4967-8cfe-74b16fd17aaf.jpg", title: "Project 14" },
-  { src: "/e8c16dab-48ec-4832-b836-095e35137555.jpg", title: "Project 15" },
-  { src: "/WhatsApp Image 2026-06-22 at 2.58.04 PM.jpeg", title: "Project 16" },
+  { src: "/image 13.jpeg", title: "Project 11" },
+  { src: "/WhatsApp Image 2026-06-22 at 3.09.17 PM.jpeg", title: "Project 12" },
+  { src: "/ee3f00e1-2816-4967-8cfe-74b16fd17aaf.jpg", title: "Project 13" },
+  { src: "/e8c16dab-48ec-4832-b836-095e35137555.jpg", title: "Project 14" },
+  { src: "/image20.jpg", title: "Project 15" },
+  { src: "/image14.jpeg", title: "Project 16" },
+  { src: "/image18.jpg", title: "Project 17" },
+  { src: "/image19.jpg", title: "Project 18" },
 ];
 
 const heroSlides = [

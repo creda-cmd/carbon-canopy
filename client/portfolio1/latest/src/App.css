@@ -1,0 +1,177 @@
+:root {
+  font-family: Inter, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #f5f7ff;
+  background: linear-gradient(135deg, #06070c, #171a2f);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #06070c, #171a2f);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.page-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 56px;
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 24px;
+  align-items: center;
+  padding: 32px 0 24px;
+}
+
+.eyebrow {
+  color: #b19cff;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  margin-bottom: 14px;
+}
+
+.intro {
+  color: #d8def7;
+  max-width: 640px;
+  font-size: 1.06rem;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #8b7cff, #d97cff);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hero-card,
+.info-card,
+.timeline-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.2);
+}
+
+.profile-badge {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(177, 156, 255, 0.16);
+  color: #d8cbff;
+  font-size: 0.86rem;
+  margin-bottom: 12px;
+}
+
+.hero-card p,
+.section-block p,
+.timeline-card p,
+.info-card p {
+  color: #dfe4f7;
+}
+
+.section-block {
+  padding: 28px 0 8px;
+}
+
+.section-block h2 {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+.chip-grid,
+.card-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.chip-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.chip,
+.info-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.chip {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.timeline-list {
+  display: grid;
+  gap: 14px;
+}
+
+.timeline-card span {
+  display: block;
+  color: #b19cff;
+  margin: 6px 0 10px;
+  font-size: 0.95rem;
+}
+
+.contact-block {
+  padding-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-shell {
+    padding: 24px 16px 48px;
+  }
+
+  .chip-grid {
+    grid-template-columns: 1fr;
+  }
+}
