@@ -3,7 +3,9 @@ import cors from "cors";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import nodemailer from "nodemailer";
+import mongoose from "mongoose";
+import Message from "./models/Message.js";
+import { Resend } from "resend";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -20,17 +22,19 @@ try {
 } catch { /* ignore */ }
 const app = express();
 const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGODB_URI || "";
+const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 
-const GMAIL_USER = process.env.GMAIL_USER || "";
-const GMAIL_PASS = process.env.GMAIL_PASS || "";
+const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
-const mailer = nodemailer.createTransport({
-  host: "smtp-mail.outlook.com",
-  port: 587,
-  secure: false,
-  auth: { user: GMAIL_USER, pass: GMAIL_PASS },
-  tls: { ciphers: "SSLv3" },
-});
+// Connect to MongoDB
+if (MONGODB_URI) {
+  mongoose.connect(MONGODB_URI)
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((err) => console.error("MongoDB connection error:", err));
+} else {
+  console.warn("MONGODB_URI not provided - using JSON file fallback");
+}
 
 app.use(cors());
 app.use(express.json());
@@ -136,7 +140,7 @@ app.get("/api/company", (_req, res) => {
 const isEmail = (v) => typeof v === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
 // Contact form submissions
-app.post("/api/contact", (req, res) => {
+app.post("/api/contact", async (req, res) => {
   const { name, email, phone, service, message } = req.body || {};
 
   if (!name || !email || !message) {
@@ -147,84 +151,70 @@ app.post("/api/contact", (req, res) => {
   }
 
   const entry = {
-    id: Date.now().toString(36),
     name: String(name).slice(0, 200),
     email: String(email).slice(0, 200),
     phone: phone ? String(phone).slice(0, 50) : "",
     service: service ? String(service).slice(0, 200) : "",
     message: String(message).slice(0, 5000),
-    receivedAt: new Date().toISOString(),
   };
 
-  // Persist to a local JSON log (acts as a simple inbox).
   try {
-    const dataDir = path.join(__dirname, "data");
-    fs.mkdirSync(dataDir, { recursive: true });
-    const file = path.join(dataDir, "messages.json");
-    const existing = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")) : [];
-    existing.push(entry);
-    fs.writeFileSync(file, JSON.stringify(existing, null, 2));
+    // Save to MongoDB
+    const savedMessage = await Message.create(entry);
+    console.log(`New enquiry from ${savedMessage.name} <${savedMessage.email}>`);
   } catch (err) {
-    console.error("Failed to persist message:", err.message);
+    console.error("Failed to save to MongoDB, falling back to JSON:", err.message);
+    // Fallback to JSON file if MongoDB fails
+    try {
+      const dataDir = path.join(__dirname, "data");
+      fs.mkdirSync(dataDir, { recursive: true });
+      const file = path.join(dataDir, "messages.json");
+      const existing = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")) : [];
+      const fallbackEntry = {
+        ...entry,
+        id: Date.now().toString(36),
+        receivedAt: new Date().toISOString(),
+      };
+      existing.push(fallbackEntry);
+      fs.writeFileSync(file, JSON.stringify(existing, null, 2));
+      console.log(`Saved to JSON fallback from ${fallbackEntry.name} <${fallbackEntry.email}>`);
+    } catch (fallbackErr) {
+      console.error("JSON fallback also failed:", fallbackErr.message);
+    }
   }
 
-  console.log(`New enquiry from ${entry.name} <${entry.email}>`);
-
-  // Send auto-reply to client
-  if (GMAIL_USER && GMAIL_PASS) {
-    const autoReply = {
-      from: `"CarbonCanopy Solutions" <${GMAIL_USER}>`,
-      to: entry.email,
-      subject: `Thank you for contacting CarbonCanopy Solutions`,
-      html: `
-        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden">
-          <div style="background:#1a3d2b;padding:24px 32px">
-            <h1 style="color:#a3e635;margin:0;font-size:20px">CarbonCanopy Solutions</h1>
-            <p style="color:#9ca3af;margin:4px 0 0;font-size:13px">Restoring Landscapes. Creating Carbon Value. Empowering Communities.</p>
+  // Send email notifications using Resend
+  if (resend) {
+    try {
+      // Notify the company of the new enquiry
+      await resend.emails.send({
+        from: `CarbonCanopy Solutions <onboarding@resend.dev>`,
+        to: company.email,
+        subject: `New enquiry from ${entry.name}`,
+        html: `
+          <div style="font-family:Arial,sans-serif;max-width:600px">
+            <h2 style="color:#1a3d2b">New Contact Form Submission</h2>
+            <table style="width:100%;border-collapse:collapse;font-size:14px">
+              <tr><td style="padding:8px;font-weight:bold;color:#374151">Name</td><td style="padding:8px;color:#374151">${entry.name}</td></tr>
+              <tr style="background:#f9fafb"><td style="padding:8px;font-weight:bold;color:#374151">Email</td><td style="padding:8px;color:#374151">${entry.email}</td></tr>
+              <tr><td style="padding:8px;font-weight:bold;color:#374151">Phone</td><td style="padding:8px;color:#374151">${entry.phone || "—"}</td></tr>
+              <tr style="background:#f9fafb"><td style="padding:8px;font-weight:bold;color:#374151">Service</td><td style="padding:8px;color:#374151">${entry.service || "—"}</td></tr>
+              <tr><td style="padding:8px;font-weight:bold;color:#374151">Message</td><td style="padding:8px;color:#374151">${entry.message}</td></tr>
+              <tr style="background:#f9fafb"><td style="padding:8px;font-weight:bold;color:#374151">Received</td><td style="padding:8px;color:#374151">${new Date().toLocaleString()}</td></tr>
+            </table>
           </div>
-          <div style="padding:32px">
-            <h2 style="color:#1a3d2b;font-size:18px">Hello ${entry.name.split(" ")[0]},</h2>
-            <p style="color:#374151;line-height:1.7">Thank you for reaching out to us. We have received your enquiry and a member of our team will get back to you shortly.</p>
-            <div style="background:#f3f4f6;border-left:4px solid #a3e635;padding:16px 20px;border-radius:4px;margin:24px 0">
-              <p style="margin:0;color:#6b7280;font-size:13px"><strong>Your message:</strong></p>
-              <p style="margin:8px 0 0;color:#374151;font-size:14px">${entry.message}</p>
-            </div>
-            <p style="color:#374151;line-height:1.7">In the meantime, feel free to explore our services or contact us directly:</p>
-            <p style="color:#374151;font-size:14px">📞 0705686479 / 0100635001<br>📧 ${GMAIL_USER}</p>
-          </div>
-          <div style="background:#f9fafb;padding:16px 32px;border-top:1px solid #e5e7eb">
-            <p style="color:#9ca3af;font-size:12px;margin:0">© ${new Date().getFullYear()} CarbonCanopy Solutions. All rights reserved.</p>
-          </div>
-        </div>
-      `,
-    };
-    mailer.sendMail(autoReply).catch((err) => console.error("Auto-reply failed:", err.message));
-
-    // Notify yourself of the new enquiry
-    const notify = {
-      from: `"CarbonCanopy Solutions" <${GMAIL_USER}>`,
-      to: GMAIL_USER,
-      subject: `New enquiry from ${entry.name}`,
-      html: `
-        <div style="font-family:Arial,sans-serif;max-width:600px">
-          <h2 style="color:#1a3d2b">New Contact Form Submission</h2>
-          <table style="width:100%;border-collapse:collapse;font-size:14px">
-            <tr><td style="padding:8px;font-weight:bold;color:#374151">Name</td><td style="padding:8px;color:#374151">${entry.name}</td></tr>
-            <tr style="background:#f9fafb"><td style="padding:8px;font-weight:bold;color:#374151">Email</td><td style="padding:8px;color:#374151">${entry.email}</td></tr>
-            <tr><td style="padding:8px;font-weight:bold;color:#374151">Phone</td><td style="padding:8px;color:#374151">${entry.phone || "—"}</td></tr>
-            <tr style="background:#f9fafb"><td style="padding:8px;font-weight:bold;color:#374151">Service</td><td style="padding:8px;color:#374151">${entry.service || "—"}</td></tr>
-            <tr><td style="padding:8px;font-weight:bold;color:#374151">Message</td><td style="padding:8px;color:#374151">${entry.message}</td></tr>
-            <tr style="background:#f9fafb"><td style="padding:8px;font-weight:bold;color:#374151">Received</td><td style="padding:8px;color:#374151">${entry.receivedAt}</td></tr>
-          </table>
-        </div>
-      `,
-    };
-    mailer.sendMail(notify).catch((err) => console.error("Notify email failed:", err.message));
+        `,
+      });
+      console.log("Notification email sent to company");
+    } catch (err) {
+      console.error("Email notification failed:", err.message);
+    }
+  } else {
+    console.warn("RESEND_API_KEY not provided - email notifications disabled");
   }
 
   return res.status(201).json({
     message: `Thank you, ${entry.name.split(" ")[0]}! Your message has been received. We'll get back to you shortly.`,
-    id: entry.id,
   });
 });
 
